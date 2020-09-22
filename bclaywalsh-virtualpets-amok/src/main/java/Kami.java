@@ -5,6 +5,7 @@ import java.util.Map;
 public abstract class Kami {
     protected String name;
     protected String species;
+    protected String goal;
     protected int quintessence;
     protected int loyalty;
     protected int intelligence;
@@ -12,30 +13,25 @@ public abstract class Kami {
     protected int ascendanceLevel;
     protected int boredom;
     protected int age;
-
-    protected String goal;
+    protected int hunger;
+    protected int purity;
+    protected int potence;
+    protected int omnipresence;
 
     protected Interaction interactionTaken; //  ALIASING! WOOHOO!
-
     protected Interaction personalInteraction1;
-
     protected Interaction personalInteraction2;
     protected Interaction intrapersonalInteraction1;
     protected Interaction intrapersonalInteraction2;
     protected Interaction alignmentInteraction1;
     protected Interaction alignmentInteraction2;
+    protected Interaction ignoredInteraction;
+    protected Interaction failedInteraction;
+
     protected int quintessenceLast;
-
     protected Map<Integer, Interaction> myPersonalInteractions = new HashMap<>();
-
     protected Map<Integer, Interaction> myIntrapersonalInteractions = new HashMap<>();
     protected Map<Integer, Interaction> myAlignmentInteractions = new HashMap<>();
-    protected int hunger;
-
-    protected int purity;
-    protected int potence;
-    protected int omnipresence;
-
 
     public Kami(String kamiName, String kamiSpecies, int quintessence, int loyalty, int intelligence, int discipline, int boredom, int age) {
         this.name = kamiName;
@@ -47,6 +43,9 @@ public abstract class Kami {
         this.discipline = discipline;
         this.boredom = boredom;
         this.age = age;
+    }
+
+    public Kami(String kamiName, String kamiSpecies) {
     }
 
     public abstract void tick();
@@ -69,7 +68,7 @@ public abstract class Kami {
         } while (alignmentInteraction1 == alignmentInteraction2);
     }
 
-    public String toString(){
+    public String toString() {
         return name + " the " + species;
     }
 
@@ -104,14 +103,6 @@ public abstract class Kami {
 
     public void setOmnipresence(int omnipresence) {
         this.omnipresence = omnipresence;
-    }
-
-    public Interaction getInteractionTaken() {
-        return interactionTaken;
-    }
-
-    public void setInteractionTaken(Interaction interactionTaken) {
-        this.interactionTaken = interactionTaken;
     }
 
     public Interaction getPersonalInteraction1() {
@@ -268,7 +259,6 @@ public abstract class Kami {
         return myIntrapersonalInteractions;
     }
 
-
     public void setMyInteractions(Map<Integer, Interaction> myInteractions) {
         this.myPersonalInteractions = myInteractions;
     }
@@ -283,10 +273,11 @@ public abstract class Kami {
 
     public abstract void alignedInteraction(int interactionKeyNumber);
 
+    public abstract Interaction getAlignedInteraction(int interactionKeyNumber);
+
     public abstract Interaction getPersonalInteraction(int interactionKey);
 
     public abstract Interaction getIntrapersonalInteraction(int interactionKey);
-
 
     public String getGoal() {
         return goal;
@@ -294,5 +285,29 @@ public abstract class Kami {
 
     public void setGoal(String goal) {
         this.goal = goal;
+    }
+
+    public Interaction getInteractionTaken() {
+        return interactionTaken;
+    }
+
+    public void setInteractionTaken(Interaction interactionTaken) {
+        this.interactionTaken = interactionTaken;
+    }
+
+    public Interaction getIgnoredInteraction() {
+        return ignoredInteraction;
+    }
+
+    public void setIgnoredInteraction(Interaction ignoredInteraction) {
+        this.ignoredInteraction = ignoredInteraction;
+    }
+
+    public Interaction getFailedInteraction() {
+        return failedInteraction;
+    }
+
+    public void setFailedInteraction(Interaction failedInteraction) {
+        this.failedInteraction = failedInteraction;
     }
 }

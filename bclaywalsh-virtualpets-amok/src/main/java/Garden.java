@@ -5,43 +5,43 @@ public class Garden {
     private int karma = 0; //Overall game score. Get more points by releasing ascendant or happier Kami.
     private int balance = 0; //Between Order and Chaos. Swayed each tick by the quintessence of relative Kami in your garden.
     private int power = 2; //Used to affect Kami. Increases by two each tick
-    private int globalChoiceA=0;
+    private int globalChoiceA = 0;
     private String globalChoiceAString;
     private String globalChoiceBString;
-    private int globalChoiceB=0;
-    private int globalChoiceTaken=0;
-    private boolean focusing=false;
+    private int globalChoiceB = 0;
+    private int globalChoiceTaken = 0;
+    private boolean focusing = false;
 
     private Scanner inputInteger = new Scanner(System.in);
 
     Map<String, Kami> gardenKami = new HashMap<>();
 
     public void generateChoices() {
-        globalChoiceA=(int)(Math.random()*4+1);
-        do{
-            globalChoiceB=(int)(Math.random()*4+1);
-        }while(globalChoiceA==globalChoiceB);
-        if(globalChoiceA==1){
-            globalChoiceAString="Cultivate your garden. Through hard work this realm can be more fruitful and disciplined.";
-        } else if(globalChoiceA==2){
-            globalChoiceAString="Call to the cleansing rains. Let bodies be purified and spirits be rejuvenated.";
-        }else if (globalChoiceA==3){
-            globalChoiceAString="Toll the sacred bell. Its echoing ring shall instill vitality in the garden spirits and grant you power, though some may detest its purity...";
-        }else if (globalChoiceA==4){
-            globalChoiceAString="Fling wide the portals and gateways to neighboring realms so that winds of change may flow freely.";
-        }else if (globalChoiceA==5){
-            globalChoiceAString="Reap a grand harvest from your garden to nourish the bodies within.";
+        globalChoiceA = (int) (Math.random() * 4 + 1);
+        do {
+            globalChoiceB = (int) (Math.random() * 4 + 1);
+        } while (globalChoiceA == globalChoiceB);
+        if (globalChoiceA == 1) {
+            globalChoiceAString = "Cultivate your garden. Through hard work this realm can be more fruitful and disciplined.";
+        } else if (globalChoiceA == 2) {
+            globalChoiceAString = "Call to the cleansing rains. Let bodies be purified and spirits be rejuvenated.";
+        } else if (globalChoiceA == 3) {
+            globalChoiceAString = "Toll the sacred bell. Its echoing ring shall instill vitality in the garden spirits and grant you power, though some may detest its purity...";
+        } else if (globalChoiceA == 4) {
+            globalChoiceAString = "Fling wide the portals and gateways to neighboring realms so that winds of change may flow freely.";
+        } else if (globalChoiceA == 5) {
+            globalChoiceAString = "Reap a grand harvest from your garden to nourish the bodies within.";
         }
-        if(globalChoiceB==1){
-            globalChoiceBString="Cultivate your garden. Through hard work this realm can be more fruitful and disciplined.";
-        } else if(globalChoiceB==2){
-            globalChoiceBString="Call to the cleansing rains. Let bodies be purified and spirits be rejuvenated.";
-        }else if (globalChoiceB==3){
-            globalChoiceBString="Toll the sacred bell. Its echoing ring shall instill vitality in the garden spirits and grant you power, though some may detest its purity...";
-        }else if (globalChoiceB==4){
-            globalChoiceBString="Fling wide the portals and gateways to neighboring realms so that winds of change may flow freely.";
-        }else if (globalChoiceB==5){
-            globalChoiceBString="Reap a grand harvest from your garden to nourish the bodies within.";
+        if (globalChoiceB == 1) {
+            globalChoiceBString = "Cultivate your garden. Through hard work this realm can be more fruitful and disciplined.";
+        } else if (globalChoiceB == 2) {
+            globalChoiceBString = "Call to the cleansing rains. Let bodies be purified and spirits be rejuvenated.";
+        } else if (globalChoiceB == 3) {
+            globalChoiceBString = "Toll the sacred bell. Its echoing ring shall instill vitality in the garden spirits and grant you power, though some may detest its purity...";
+        } else if (globalChoiceB == 4) {
+            globalChoiceBString = "Fling wide the portals and gateways to neighboring realms so that winds of change may flow freely.";
+        } else if (globalChoiceB == 5) {
+            globalChoiceBString = "Reap a grand harvest from your garden to nourish the bodies within.";
         }
     }
 
@@ -49,33 +49,39 @@ public class Garden {
         Kami thisKamiA;
         Kami thisKamiB;
         Kami thisKamiC;
-        int KamiA = (int)(Math.random()*3+1);
-        int KamiB = (int)(Math.random()*3+1);
-        int KamiC = (int)(Math.random()*3+1);
-        if (KamiA!=4){thisKamiA = new HearthKami("Pollus","Hearth Kami",2,3,2,3,1,0,8,8);}
-        else{thisKamiA = new Phoenix("Anaxas","Nature Kami",3,0,1,0,3,1,4,8);
+        int KamiA = (int) ((Math.random() * 3 + 1));
+        int KamiB = (int) ((Math.random() * 3 + 1));
+        int KamiC = (int) ((Math.random() * 3 + 1));
+        if (KamiA != 4) {
+            thisKamiA = new HearthKami("Pollus", "Hearth Kami", 2, 3, 2, 3, 1, 0, 8, 8);
+        } else {
+            thisKamiA = new Phoenix("Anaxas", "Nature Kami", 3, 0, 1, 0, 3, 1, 4, 8);
         }
-        if (KamiB!=4){thisKamiB = new HearthKami("Reini","Hearth Kami",2,3,3,2,2,0,9,9);}
-        else{thisKamiB = new Phoenix("Seto","Kirrin",8,5,1,5,0,5,5,10);
+        if (KamiB != 4) {
+            thisKamiB = new HearthKami("Reini", "Hearth Kami", 2, 3, 3, 2, 2, 0, 9, 9);
+        } else {
+            thisKamiB = new Phoenix("Seto", "Kirrin", 8, 5, 1, 5, 0, 5, 5, 10);
         }
-        if (KamiA!=4){thisKamiC = new HearthKami("Relcorr","Dragon",10,0,5,5,5,5,13,0);}
-        else{thisKamiC = new Phoenix("Anthrafel","Phoenix",5,0,1,5,3,10,5,15);
+        if (KamiA != 4) {
+            thisKamiC = new HearthKami("Relcorr", "Dragon", 10, 0, 5, 5, 5, 5, 13, 0);
+        } else {
+            thisKamiC = new Phoenix("Anthrafel", "Phoenix", 5, 0, 1, 5, 3, 10, 5, 15);
         }
-        gardenKami.put(thisKamiA.getName(),thisKamiA);
-        gardenKami.put(thisKamiB.getName(),thisKamiB);
-        gardenKami.put(thisKamiC.getName(),thisKamiC);
+        gardenKami.put(thisKamiA.getName(), thisKamiA);
+        gardenKami.put(thisKamiB.getName(), thisKamiB);
+        gardenKami.put(thisKamiC.getName(), thisKamiC);
     }
 
-    public void summon(Kami kami) {
-        gardenKami.put(kami.getName(), kami);
+    public void summon(Kami kami, String kamiName) {
+        gardenKami.put(kamiName, kami);
     }
 
     public void release(String kamiName) {
         if (gardenKami.containsKey(kamiName)) {
             Kami thisKami = gardenKami.get(kamiName);
-            if (thisKami.getQuintessence() >= thisKami.getAscendanceLevel())
-                karma += (int) (thisKami.getQuintessence() - thisKami.getAscendanceLevel()) / thisKami.getAscendanceLevel() + 3;
-            else karma -= thisKami.getAscendanceLevel() - thisKami.getQuintessence();
+//            if (thisKami.getQuintessence() >= thisKami.getAscendanceLevel())
+//                karma += (int) ((thisKami.getQuintessence() / (1+thisKami.getAscendanceLevel())));
+//            else karma -= (thisKami.getAscendanceLevel() - thisKami.getQuintessence())*0.5;
             gardenKami.remove(kamiName);
         } else {
             System.out.println("No Kami with that name here resides.");
@@ -84,17 +90,24 @@ public class Garden {
 
     public void tick() {
         yearsGone++;
-        if (power < Math.abs(karma) + 2) power += 2;
+        if (power < 0) power = 0;
+
+        //REGENERATE POWER AT A HIGHER RATE WHEN AT LOWER POWER, AND WITH HIGHER KARMA
+        if (power < Math.abs(karma) * 0.5) {
+            power += 3;
+        } else if (power < Math.abs(karma) + 2) {
+            power += 2;
+        } else power++;
         for (Kami kami : gardenKami.values()) {
             kami.tick();
         }
         if (Math.abs(balance) > 2) {
-            karma -= (int) Math.abs(balance) / 3;
+            karma -= (int) (Math.abs(balance) / 3);
         }
         //SWING the balance of the garden in favor of the dominant alignment.
-        if (getAxiomaticKami().size() - getNeutralKami().size() * 0.5 > (getChaoticKami().size() + 2)) {
+        if (getAxiomaticKami().size() - getChaoticKami().size() > getNeutralKami().size()) {
             balance += getAxiomaticKami().size() - getChaoticKami().size();
-        } else if (getChaoticKami().size() - getNeutralKami().size() * 0.5 > (getAxiomaticKami().size() + 2)) {
+        } else if (getChaoticKami().size() - getNeutralKami().size() > (getAxiomaticKami().size())) {
             balance -= getAxiomaticKami().size() - getChaoticKami().size();
         }
     }
@@ -108,25 +121,24 @@ public class Garden {
         System.out.println("3: (" + thisKami.getIntrapersonalInteraction1().getPowerCost() + "thaums, Difficulty: " + thisKami.getIntrapersonalInteraction1().getDifficulty() + ") " + thisKami.getIntrapersonalInteraction1().getText());
         System.out.println("4: <-back");
         boolean ok = false;
-        while(!ok) {
+        while (!ok) {
             command = inputInteger.nextInt();
-            if (command == 1 && power>= thisKami.getPersonalInteraction1().getPowerCost()) {
+            if (command == 1 && power >= thisKami.getPersonalInteraction1().getPowerCost()) {
                 thisKami.personalInteraction(1);
                 power -= thisKami.getPersonalInteraction1().getPowerCost();
                 ok = true;
-            }
-            else if (command == 2 && power>= thisKami.getAlignmentInteraction1().getPowerCost()) {
+            } else if (command == 2 && power >= thisKami.getAlignmentInteraction1().getPowerCost()) {
                 thisKami.alignedInteraction(1);
                 power -= thisKami.getAlignmentInteraction1().getPowerCost();
                 ok = true;
-            }
-            else if (command == 3 && power>= thisKami.getIntrapersonalInteraction1().getPowerCost()) {
+            } else if (command == 3 && power >= thisKami.getIntrapersonalInteraction1().getPowerCost()) {
                 thisKami.intrapersonalInteraction(1);
                 power -= thisKami.getIntrapersonalInteraction1().getPowerCost();
                 ok = true;
-            }
-            else if (command==4) { ok = true;}
-            else{ System.out.println("You lack sufficient power to proceed with that action.");
+            } else if (command == 4) {
+                ok = true;
+            } else {
+                System.out.println("You lack sufficient power to proceed with that action.");
             }
         }
     }
@@ -139,7 +151,7 @@ public class Garden {
             }
             thisKami.setDiscipline(thisKami.getDiscipline() + 1);
         }
-        power++;
+        karma++;
     }
 
     public void callRain() {
@@ -166,7 +178,7 @@ public class Garden {
                 } else thisKami.setPotence(thisKami.getPotence() + 5);
             }
         }
-        power+=2;
+        balance = 0;
     }
 
     public void openGates() {
@@ -332,5 +344,9 @@ public class Garden {
 
     public void setFocusing(boolean focusing) {
         this.focusing = focusing;
+    }
+
+    public Kami getKami(String kamiToRelease) {
+        return gardenKami.get(kamiToRelease);
     }
 }

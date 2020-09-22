@@ -15,6 +15,8 @@ public class KamiTest {
 
     @Test
     public void kamiTickShouldIncreaseBoredomAndHungerInCorporealKami() {
+        underTestPhoenix.setBoredom(0);
+        underTestPhoenix.setHunger(0);
         underTestPhoenix.tick();
         assertEquals(1, underTestPhoenix.getBoredom());
         assertEquals(1, underTestPhoenix.getHunger());
@@ -52,7 +54,7 @@ public class KamiTest {
 
     @Test
     public void ascendedKamiWillMaintainAMinimumLevelOfAllDegradingStats(){
-        underTestGarden.summon(underTestPhoenix);
+        underTestGarden.summon(underTestPhoenix, "Faulks");
         underTestPhoenix.setQuintessence(20);
         underTestPhoenix.setPurity(4);
         underTestPhoenix.setHunger(10);

@@ -16,7 +16,6 @@ public class Interaction {
     private int requiredQuintessence = 0;
 
 
-
     public Interaction(int difficulty, int powerCost, int disciplineChange, int IntelligenceChange, int boredomChange, int loyaltyChange, int hungerChange, int purityChange, int potenceChange, int omnipresenceChange, String interactionString, String reactionString, int requiredDiscipline, int requiredIntelligence, int requiredQuintessence) {
         this.text = interactionString;
         this.reactionText = reactionString;
@@ -36,7 +35,7 @@ public class Interaction {
     }
 
 
-    public String toString(){
+    public String toString() {
         return text;
     }
 

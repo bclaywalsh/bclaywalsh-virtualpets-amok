@@ -23,7 +23,7 @@ public class GardenTest {
 
     @Test
     public void shouldBeAbleToSummonHearthKami(){
-        underTestGarden.summon(underTestHearthKami);
+        underTestGarden.summon(underTestHearthKami, "Pollus");
         Map kamiRoster = underTestGarden.getGardenKami();
         int gardenSize = kamiRoster.size();
         assertEquals(1,gardenSize);
@@ -32,24 +32,24 @@ public class GardenTest {
 
     @Test
     public void shouldBeAbleToSummonHearthKamiANDDRAGON(){
-        underTestGarden.summon(underTestHearthKami);
-        underTestGarden.summon(underTestDragon);
-        underTestGarden.summon(underTestDragon3);
-        underTestGarden.summon(underTestDragon2);
+        underTestGarden.summon(underTestHearthKami, "Pollus");
+        underTestGarden.summon(underTestDragon, "Relcorr");
+        underTestGarden.summon(underTestDragon3, "Berrylinthranox");
+        underTestGarden.summon(underTestDragon2, "Skye");
         assertEquals(4,underTestGarden.gardenKami.size());
     }
 
     @Test
     public void releaseKamiShouldReduceGardenSizeFrom2To1(){
-        underTestGarden.summon(underTestHearthKami);
-        underTestGarden.summon(underTestNatureKami);
+        underTestGarden.summon(underTestHearthKami, "Pollus");
+        underTestGarden.summon(underTestNatureKami, "Dapple");
         underTestGarden.release(underTestHearthKami.getName());
-        Map kamiRoster = underTestGarden.getGardenKami();
+        assertEquals(1,underTestGarden.getGardenKami().size());
     }
 
     @Test
     public void releasingAnAscendedKamiShouldIncreaseKarmaByOnePointPerAmountOfQuintessenceItIsOverItsAscendanceLevelExponentPlus3(){
-        underTestGarden.summon(underTestNatureKami);
+        underTestGarden.summon(underTestNatureKami, "Dapple");
         underTestNatureKami.setQuintessence(18);
         underTestNatureKami.setAscendanceLevel(6);
         underTestGarden.release(underTestNatureKami.getName());
@@ -58,10 +58,10 @@ public class GardenTest {
 
     @Test
     public void getAxiomaticKamiShouldReturnHearthKamiAndDragonOnlyFromAmongOthers(){
-        underTestGarden.summon(underTestHearthKami);
-        underTestGarden.summon(underTestNatureKami);
-        underTestGarden.summon(underTestPhoenix);
-        underTestGarden.summon(underTestDragon);
+        underTestGarden.summon(underTestHearthKami, "Pollus");
+        underTestGarden.summon(underTestNatureKami, "Dapple");
+        underTestGarden.summon(underTestPhoenix, "Faulks");
+        underTestGarden.summon(underTestDragon, "Relcorr");
 
         Map<String, Kami> axiomaticKami = underTestGarden.getAxiomaticKami();
         assertEquals(2, axiomaticKami.size());
@@ -69,10 +69,10 @@ public class GardenTest {
 
     @Test
     public void getChaoticKamiShouldReturnNatureKamiAndCurseKamiOnlyFromAmongOthers(){
-        underTestGarden.summon(underTestHearthKami);
-        underTestGarden.summon(underTestNatureKami);
-        underTestGarden.summon(underTestKirrin);
-        underTestGarden.summon(underTestPhoenix);
+        underTestGarden.summon(underTestHearthKami, "Pollus");
+        underTestGarden.summon(underTestNatureKami, "Dapple");
+        underTestGarden.summon(underTestKirrin, "Seto");
+        underTestGarden.summon(underTestPhoenix, "Faulks");
 
         Map<String, Kami> chaoticKami = underTestGarden.getChaoticKami();
         assertEquals(1, chaoticKami.size());
@@ -80,10 +80,10 @@ public class GardenTest {
 
     @Test
     public void getNeutralKamiShouldReturnPhoenixAndKirrinOnlyFromAmongOthers(){
-        underTestGarden.summon(underTestHearthKami);
-        underTestGarden.summon(underTestNatureKami);
-        underTestGarden.summon(underTestKirrin);
-        underTestGarden.summon(underTestPhoenix);
+        underTestGarden.summon(underTestHearthKami, "Pollus");
+        underTestGarden.summon(underTestNatureKami, "Dapple");
+        underTestGarden.summon(underTestKirrin, "Seto");
+        underTestGarden.summon(underTestPhoenix, "Faulks");
 
         Map<String, Kami> neutralKami = underTestGarden.getNeutralKami();
         assertEquals(2, neutralKami.size());
@@ -91,12 +91,12 @@ public class GardenTest {
 
     @Test
     public void getCorporealKamiShouldReturnPhoenixAndKirrinAndDragonOnlyFromAmongOthers(){
-        underTestGarden.summon(underTestHearthKami);
-        underTestGarden.summon(underTestNatureKami);
-        underTestGarden.summon(underTestKirrin);
-        underTestGarden.summon(underTestPhoenix);
-        underTestGarden.summon(underTestDragon);
-        underTestGarden.summon(underTestDragon2);
+        underTestGarden.summon(underTestHearthKami, "Pollus");
+        underTestGarden.summon(underTestNatureKami, "Dapple");
+        underTestGarden.summon(underTestKirrin, "Seto");
+        underTestGarden.summon(underTestPhoenix, "Faulks");
+        underTestGarden.summon(underTestDragon, "Relcorr");
+        underTestGarden.summon(underTestDragon2,"Skye");
 
         Map<String, Kami> corporealKami = underTestGarden.getCorporealKami();
         assertEquals(4, corporealKami.size());
@@ -104,13 +104,13 @@ public class GardenTest {
 
     @Test
     public void getEtherealKamiShouldReturnHearthKamiAndNatureKamiAndCurseKamiOnlyFromAmongOthers(){
-        underTestGarden.summon(underTestHearthKami);
-        underTestGarden.summon(underTestNatureKami);
-        underTestGarden.summon(underTestCurseKami);
-        underTestGarden.summon(underTestKirrin);
-        underTestGarden.summon(underTestPhoenix);
-        underTestGarden.summon(underTestDragon);
-        underTestGarden.summon(underTestDragon2);
+        underTestGarden.summon(underTestHearthKami, "Pollus");
+        underTestGarden.summon(underTestNatureKami, "Dapple");
+        underTestGarden.summon(underTestCurseKami, "Ju-On");
+        underTestGarden.summon(underTestKirrin, "Seto");
+        underTestGarden.summon(underTestPhoenix, "Faulks");
+        underTestGarden.summon(underTestDragon, "Relcorr");
+        underTestGarden.summon(underTestDragon2,"Skye");
 
         Map<String, Kami> etherealKami = underTestGarden.getEtherealKami();
         assertEquals(3, etherealKami.size());
@@ -118,10 +118,10 @@ public class GardenTest {
 
     @Test
     public void gardenTickShouldIncreaseHungerAndReducePurityOfCorporealAndReducePotenceOfEthereal(){
-        underTestGarden.summon(underTestHearthKami);
-        underTestGarden.summon(underTestNatureKami);
-        underTestGarden.summon(underTestPhoenix);
-        underTestGarden.summon(underTestDragon);
+        underTestGarden.summon(underTestHearthKami, "Pollus");
+        underTestGarden.summon(underTestNatureKami, "Dapple");
+        underTestGarden.summon(underTestPhoenix, "Faulks");
+        underTestGarden.summon(underTestDragon, "Relcorr");
 
         underTestGarden.tick();
         assertEquals(2, underTestHearthKami.getPotence());
@@ -142,12 +142,12 @@ public class GardenTest {
 
     @Test
     public void gardenTickWhileIncludingUnbalancedKamiWillSwayBalanceOfGarden(){
-        underTestGarden.summon(underTestDragon);
-        underTestGarden.summon(underTestDragon2);
-        underTestGarden.summon(underTestDragon3);
-        underTestGarden.summon(underTestNatureKami);
+        underTestGarden.summon(underTestDragon, "Relcorr");
+        underTestGarden.summon(underTestDragon2, "Skye");
+        underTestGarden.summon(underTestDragon3, "Baryllinthranox");
+        underTestGarden.summon(underTestNatureKami, "Dapple");
         underTestGarden.tick();
-        assertEquals(1,underTestGarden.getBalance());
+        assertEquals(2,underTestGarden.getBalance());
     }
 
     @Test
@@ -160,9 +160,9 @@ public class GardenTest {
 
     @Test
     public void cultivateGardenShouldIncreaseHungerOfAllCorporealKamiBy1AndIncreasePurityOfAllCorporealKamiBy4(){
-        underTestGarden.summon(underTestKirrin);
-        underTestGarden.summon(underTestPhoenix);
-        underTestGarden.summon(underTestDragon);
+        underTestGarden.summon(underTestKirrin, "Seto");
+        underTestGarden.summon(underTestPhoenix, "Faulks");
+        underTestGarden.summon(underTestDragon, "Relcorr");
         underTestKirrin.setHunger(10);
         underTestDragon.setHunger(8);
         underTestPhoenix.setHunger(6);
@@ -181,12 +181,12 @@ public class GardenTest {
 
     @Test
     public void callRainShouldIncreasePurityOfAllCorporealKamiBy5ExceptPhoenixWhoIncreasesHungerBy2AndReducesPurityBy2AndIncreaseOmnipresenceOfAllEtherealKamiBy2(){
-        underTestGarden.summon(underTestHearthKami);
-        underTestGarden.summon(underTestNatureKami);
-        underTestGarden.summon(underTestCurseKami);
-        underTestGarden.summon(underTestKirrin);
-        underTestGarden.summon(underTestPhoenix);
-        underTestGarden.summon(underTestDragon);
+        underTestGarden.summon(underTestHearthKami, "Pollus");
+        underTestGarden.summon(underTestNatureKami, "Dapple");
+        underTestGarden.summon(underTestCurseKami, "Ju-On");
+        underTestGarden.summon(underTestKirrin, "Seto");
+        underTestGarden.summon(underTestPhoenix, "Faulks");
+        underTestGarden.summon(underTestDragon, "Relcorr");
         underTestKirrin.setPurity(10);
         underTestDragon.setPurity(8);
         underTestPhoenix.setPurity(6);
@@ -203,32 +203,32 @@ public class GardenTest {
     }
 
     @Test
-    public void tollBellShouldIncreasePotenceOfAllEtherealKamiBy5ExceptCurseKamiWhichItReducesBy3AndReducesQuintessenceBy1AndIncreasePlayerPowerBy1(){
-        underTestGarden.summon(underTestHearthKami);
-        underTestGarden.summon(underTestNatureKami);
-        underTestGarden.summon(underTestCurseKami);
+    public void tollBellShouldIncreasePotenceOfAllEtherealKamiBy5ExceptCurseKamiWhichItReducesBy3AndReducesQuintessenceBy1AndResetBalanceTo0(){
+        underTestGarden.summon(underTestHearthKami, "Pollus");
+        underTestGarden.summon(underTestNatureKami, "Dapple");
+        underTestGarden.summon(underTestCurseKami, "Ju-On");
         underTestHearthKami.setPotence(2);
         underTestNatureKami.setPotence(5);
         underTestCurseKami.setPotence(1256);
         underTestCurseKami.setQuintessence(1);
-        underTestGarden.setPower(3);
+        underTestGarden.setBalance(30000);
 
         underTestGarden.tollBell();
         assertEquals(7, underTestHearthKami.getPotence());
         assertEquals(10, underTestNatureKami.getPotence());
         assertEquals(1253, underTestCurseKami.getPotence());
         assertEquals(0, underTestCurseKami.getQuintessence());
-        assertEquals(4,underTestGarden.getPower());
+        assertEquals(0,underTestGarden.getBalance());
     }
 
     @Test
     public void openGatesShouldIncreaseOmnipresenceOfAllEtherealKamiBy5AndReduceHungerOfAllCorporealKamiBy2ButReduceDragonPurityBy2(){
-        underTestGarden.summon(underTestHearthKami);
-        underTestGarden.summon(underTestNatureKami);
-        underTestGarden.summon(underTestCurseKami);
-        underTestGarden.summon(underTestKirrin);
-        underTestGarden.summon(underTestPhoenix);
-        underTestGarden.summon(underTestDragon);
+        underTestGarden.summon(underTestHearthKami, "Pollus");
+        underTestGarden.summon(underTestNatureKami, "Dapple");
+        underTestGarden.summon(underTestCurseKami, "Ju-On");
+        underTestGarden.summon(underTestKirrin, "Seto");
+        underTestGarden.summon(underTestPhoenix, "Faulks");
+        underTestGarden.summon(underTestDragon, "Relcorr");
         underTestKirrin.setHunger(10);
         underTestDragon.setHunger(8);
         underTestDragon.setPurity(8);
@@ -250,12 +250,12 @@ public class GardenTest {
 
     @Test
     public void harvestGardenShouldReduceHungerOfAllCorporealKamiBy8AndReducePotenceOfNatureKamiBy4AndQuintessenceBy1(){
-        underTestGarden.summon(underTestHearthKami);
-        underTestGarden.summon(underTestNatureKami);
-        underTestGarden.summon(underTestCurseKami);
-        underTestGarden.summon(underTestKirrin);
-        underTestGarden.summon(underTestPhoenix);
-        underTestGarden.summon(underTestDragon);
+        underTestGarden.summon(underTestHearthKami, "Pollus");
+        underTestGarden.summon(underTestNatureKami, "Dapple");
+        underTestGarden.summon(underTestCurseKami, "Ju-On");
+        underTestGarden.summon(underTestKirrin, "Seto");
+        underTestGarden.summon(underTestPhoenix, "Faulks");
+        underTestGarden.summon(underTestDragon, "Relcorr");
         underTestKirrin.setHunger(10);
         underTestDragon.setHunger(8);
         underTestPhoenix.setHunger(6);

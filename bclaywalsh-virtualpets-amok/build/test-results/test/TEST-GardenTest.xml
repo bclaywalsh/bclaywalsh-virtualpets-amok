@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="GardenTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-09-21T14:59:12" hostname="UNIT2020-1" time="0.033">
-  <properties/>
-  <testcase name="generateStartingKamiShouldCreate3KamiAndAddToGardenKamiMap()" classname="GardenTest" time="0.033"/>
-  <system-out><![CDATA[{Reini=Reini the Hearth Kami, Relcorr=Relcorr the Dragon, Pollus=Pollus the Hearth Kami}
-]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

@@ -10,13 +10,27 @@ public abstract class Kami {
     protected int loyalty;
     protected int intelligence;
     protected int discipline;
-    protected int ascendanceLevel;
+    protected int ascendanceLevel = 10;
     protected int boredom;
     protected int age;
     protected int hunger;
     protected int purity;
     protected int potence;
     protected int omnipresence;
+    protected boolean isInteracting = false;
+
+
+    //PREVIOUS TICK STATS
+    protected int loyaltyLast;
+    protected int intelligenceLast;
+    protected int disciplineLast;
+    protected int boredomLast;
+    protected int hungerLast;
+    protected int purityLast;
+    protected int potenceLast;
+    protected int omnipresenceLast;
+    protected int quintessenceLast;
+
 
     protected Interaction interactionTaken; //  ALIASING! WOOHOO!
     protected Interaction personalInteraction1;
@@ -27,8 +41,10 @@ public abstract class Kami {
     protected Interaction alignmentInteraction2;
     protected Interaction ignoredInteraction;
     protected Interaction failedInteraction;
+    protected int personalInteractionNumber = 5;
+    protected int intrapersonalInteractionNumber = 5;
 
-    protected int quintessenceLast;
+
     protected Map<Integer, Interaction> myPersonalInteractions = new HashMap<>();
     protected Map<Integer, Interaction> myIntrapersonalInteractions = new HashMap<>();
     protected Map<Integer, Interaction> myAlignmentInteractions = new HashMap<>();
@@ -50,50 +66,61 @@ public abstract class Kami {
         this.species = kamiSpecies;
     }
 
-    public void tick() {
-        if (this instanceof Corporeal) {
-            hunger++;
-            purity--;
-//            if (hunger > 5) {
-//                if (Math.random() + ((hunger - 5) * 0.1) > 1) quintessence--;
-//                if (hunger > 10) hunger = 10;
-//            } else if (hunger < 0) hunger = 0;
-//            if (purity < 5) {
-//                if (Math.random() + ((5 - purity) * 0.1) > 1) quintessence--;
-//                if (purity < 0) purity = 0;
-//            } else if (purity > 10) purity = 10;
-//
-//            if (quintessence > ascendanceLevel) { // ASCENDED CORPOREAL STAT CAPS
-//                if (hunger > 3) hunger = 3;
-//                if (purity < 8) purity = 8;
-//            }
-        }
-        if (this instanceof Ethereal) {
-            potence--;
-            omnipresence--;
-//            if (potence < 5) {
-//                if (Math.random() + ((5 - potence) * 0.1) > 1) quintessence--;
-//                if (potence < 0) potence = 0;
-//            } else if (potence > 10) potence = 10;
-//            if (omnipresence < 5) {
-//                if (Math.random() + ((5 - omnipresence) * 0.1) > 1) quintessence--;
-//                if (omnipresence < 0) omnipresence = 0;
-//            } else if (omnipresence > 10) omnipresence = 10;
-//
-//            if (quintessence > ascendanceLevel) {  // ASCENDED ETHEREAL STAT CAPS
-//                if (potence < 8) potence = 8;
-//                if (omnipresence < 8) omnipresence = 8;
-//            }
-        }
-        //COMMON STAT CHANGES
-        boredom++;
-//        if (intelligence < 0) intelligence = 0;
-//        if (discipline < 0) discipline = 0;
-//        if (loyalty < 0) loyalty = 0;
-//        if (boredom > 10) boredom = 10;
-//        if (boredom<0) boredom = 0;
-    }
+    public abstract void tick();
 
+    //      //UPDATE STAT CHANGES FROM LAST ROUND FROM ALL SOURCES
+    //    public void tick() {
+    //    loyaltyLast = loyalty;
+    //    boredomLast = boredom;
+    //    intelligenceLast = intelligence;
+    //    disciplineLast = discipline;
+    //    hungerLast = hunger;
+    //    purityLast = purity;
+    //    potenceLast = potence;
+    //    omnipresenceLast = omnipresence;
+    //    quintessenceLast = quintessence;
+    //        if (this instanceof Corporeal) {
+    //            hunger++;
+    //            purity--;
+    ////            if (hunger > 5) {
+    ////                if (Math.random() + ((hunger - 5) * 0.1) > 1) quintessence--;
+    ////                if (hunger > 10) hunger = 10;
+    ////            } else if (hunger < 0) hunger = 0;
+    ////            if (purity < 5) {
+    ////                if (Math.random() + ((5 - purity) * 0.1) > 1) quintessence--;
+    ////                if (purity < 0) purity = 0;
+    ////            } else if (purity > 10) purity = 10;
+    ////
+    ////            if (quintessence > ascendanceLevel) { // ASCENDED CORPOREAL STAT CAPS
+    ////                if (hunger > 3) hunger = 3;
+    ////                if (purity < 8) purity = 8;
+    ////            }
+    //        }
+    //        if (this instanceof Ethereal) {
+    //            potence--;
+    //            omnipresence--;
+    ////            if (potence < 5) {
+    ////                if (Math.random() + ((5 - potence) * 0.1) > 1) quintessence--;
+    ////                if (potence < 0) potence = 0;
+    ////            } else if (potence > 10) potence = 10;
+    ////            if (omnipresence < 5) {
+    ////                if (Math.random() + ((5 - omnipresence) * 0.1) > 1) quintessence--;
+    ////                if (omnipresence < 0) omnipresence = 0;
+    ////            } else if (omnipresence > 10) omnipresence = 10;
+    ////
+    ////            if (quintessence > ascendanceLevel) {  // ASCENDED ETHEREAL STAT CAPS
+    ////                if (potence < 8) potence = 8;
+    ////                if (omnipresence < 8) omnipresence = 8;
+    ////            }
+    //        }
+    //        //COMMON STAT CHANGES
+    //        boredom++;
+    ////        if (intelligence < 0) intelligence = 0;
+    ////        if (discipline < 0) discipline = 0;
+    ////        if (loyalty < 0) loyalty = 0;
+    ////        if (boredom > 10) boredom = 10;
+    ////        if (boredom<0) boredom = 0;
+    //    }
     public void generateChoices() {
         //randomly select two different interactions from each sort of list to offer the player
         personalInteraction1 = myPersonalInteractions.get((int) (Math.ceil(Math.random() * myPersonalInteractions.size())));
@@ -192,6 +219,16 @@ public abstract class Kami {
     public Interaction getAlignmentInteraction2() {
         return alignmentInteraction2;
     }
+
+    public int getAlignmentInteractionNumber() {
+        return alignmentInteractionNumber;
+    }
+
+    public void setAlignmentInteractionNumber(int alignmentInteractionNumber) {
+        this.alignmentInteractionNumber = alignmentInteractionNumber;
+    }
+
+    protected int alignmentInteractionNumber = 5;
 
     public void setAlignmentInteraction2(Interaction alignmentInteraction2) {
         this.alignmentInteraction2 = alignmentInteraction2;
@@ -307,21 +344,165 @@ public abstract class Kami {
         this.myPersonalInteractions = myInteractions;
     }
 
-    public abstract void addPersonalInteraction(Interaction thisInteraction);
 
-    public abstract void addIntrapersonalInteraction(Interaction thisInteraction);
+    public void addPersonalInteraction(Interaction thisInteraction) {
+        myPersonalInteractions.put(personalInteractionNumber, thisInteraction);
+        personalInteractionNumber++;
+    }
 
-    public abstract void personalInteraction(int interactionKeyNumber);
+    public void addIntrapersonalInteraction(Interaction thisInteraction) {
+        myPersonalInteractions.put(intrapersonalInteractionNumber + 10, thisInteraction);
+        intrapersonalInteractionNumber++;
+    }
 
-    public abstract void intrapersonalInteraction(int interactionKeyNumber);
+    public void personalInteraction(int interactionKeyNumber) {
+        if (this instanceof Corporeal) {
+            if ((2 * loyalty + discipline + intelligence + quintessence + (10 - purity) - hunger - boredom - age * 0.5) * 10 + (Math.random() - 0.5) * 10 > getPersonalInteraction(interactionKeyNumber).getDifficulty()) {
+                //Update Stats And React Properly
+                hunger += myPersonalInteractions.get(interactionKeyNumber).getHungerChange();
+                purity += myPersonalInteractions.get(interactionKeyNumber).getPurityChange();
+                boredom += myPersonalInteractions.get(interactionKeyNumber).getBoredomChange();
+                loyalty += myPersonalInteractions.get(interactionKeyNumber).getLoyaltyChange();
+                intelligence += myPersonalInteractions.get(interactionKeyNumber).getIntelligenceChange();
+                discipline += myPersonalInteractions.get(interactionKeyNumber).getDisciplineChange();
 
-    public abstract void alignedInteraction(int interactionKeyNumber);
+                //REMEMBER which action was taken last
+                interactionTaken = myPersonalInteractions.get(interactionKeyNumber);
+            } else {
+                hunger += (int) (Math.random() - 0.3) * 2;
+                purity -= (int) (Math.random() - 0.3) * 2;
+                boredom += (int) (Math.random() - 0.3) * 2;
+                loyalty -= (int) (Math.random() - 0.3) * 2;
 
-    public abstract Interaction getAlignedInteraction(int interactionKeyNumber);
+                interactionTaken = failedInteraction;
+            }
+        } else {
+            if ((2 * loyalty + discipline + intelligence + quintessence - (10 - potence) - (10 - omnipresence) - boredom - age * 0.5) * 10 + (Math.random() - 0.5) * 10 > getPersonalInteraction(interactionKeyNumber).getDifficulty()) {
+                //Update Stats And React Properly
+                potence += myAlignmentInteractions.get(interactionKeyNumber).getHungerChange();
+                omnipresence += myAlignmentInteractions.get(interactionKeyNumber).getPurityChange();
+                boredom += myAlignmentInteractions.get(interactionKeyNumber).getBoredomChange();
+                loyalty += myAlignmentInteractions.get(interactionKeyNumber).getLoyaltyChange();
+                intelligence += myAlignmentInteractions.get(interactionKeyNumber).getIntelligenceChange();
+                discipline += myAlignmentInteractions.get(interactionKeyNumber).getDisciplineChange();
 
-    public abstract Interaction getPersonalInteraction(int interactionKey);
+                //REMEMBER which action was taken last
+                interactionTaken = myAlignmentInteractions.get(interactionKeyNumber);
+            } else {
+                potence -= (int) (Math.random() - 0.3) * 2;
+                omnipresence -= (int) (Math.random() - 0.3) * 2;
+                boredom += (int) (Math.random() - 0.3) * 2;
+                loyalty -= (int) (Math.random() - 0.3) * 2;
+                interactionTaken = failedInteraction;
+            }
+        }
+    }
 
-    public abstract Interaction getIntrapersonalInteraction(int interactionKey);
+
+    public void intrapersonalInteraction(int interactionKeyNumber) {
+        if (this instanceof Corporeal) {
+            if ((2 * loyalty + discipline + intelligence + quintessence + (10 - purity) - hunger - boredom - age * 0.5) * 10 + (Math.random() - 0.5) * 10 > getIntrapersonalInteraction(interactionKeyNumber).getDifficulty()) {
+                //Update Stats And React Properly
+                hunger += myIntrapersonalInteractions.get(interactionKeyNumber).getHungerChange();
+                purity += myIntrapersonalInteractions.get(interactionKeyNumber).getPurityChange();
+                boredom += myIntrapersonalInteractions.get(interactionKeyNumber).getBoredomChange();
+                loyalty += myIntrapersonalInteractions.get(interactionKeyNumber).getLoyaltyChange();
+                intelligence += myIntrapersonalInteractions.get(interactionKeyNumber).getIntelligenceChange();
+                discipline += myIntrapersonalInteractions.get(interactionKeyNumber).getDisciplineChange();
+
+                //REMEMBER which action was taken last
+                interactionTaken = myIntrapersonalInteractions.get(interactionKeyNumber);
+            } else {
+                hunger += (int) (Math.random() - 0.3) * 2;
+                purity -= (int) (Math.random() - 0.3) * 2;
+                boredom += (int) (Math.random() - 0.3) * 2;
+                loyalty -= (int) (Math.random() - 0.3) * 2;
+
+                interactionTaken = failedInteraction;
+            }
+        } else {
+            if ((2 * loyalty + discipline + intelligence + quintessence - (10 - potence) - (10 - omnipresence) - boredom - age * 0.5) * 10 + (Math.random() - 0.5) * 10 > getIntrapersonalInteraction(interactionKeyNumber).getDifficulty()) {
+
+                //Update Stats And React Properly
+                potence += myAlignmentInteractions.get(interactionKeyNumber).getHungerChange();
+                omnipresence += myAlignmentInteractions.get(interactionKeyNumber).getPurityChange();
+                boredom += myAlignmentInteractions.get(interactionKeyNumber).getBoredomChange();
+                loyalty += myAlignmentInteractions.get(interactionKeyNumber).getLoyaltyChange();
+                intelligence += myAlignmentInteractions.get(interactionKeyNumber).getIntelligenceChange();
+                discipline += myAlignmentInteractions.get(interactionKeyNumber).getDisciplineChange();
+
+                //REMEMBER which action was taken last
+                interactionTaken = myAlignmentInteractions.get(interactionKeyNumber);
+            } else {
+                potence -= (int) (Math.random() - 0.3) * 2;
+                omnipresence -= (int) (Math.random() - 0.3) * 2;
+                boredom += (int) (Math.random() - 0.3) * 2;
+                loyalty -= (int) (Math.random() - 0.3) * 2;
+                interactionTaken = failedInteraction;
+            }
+        }
+    }
+
+    public void alignedInteraction(int interactionKeyNumber) {
+        if (this instanceof Corporeal) {
+            if ((((2 * loyalty + discipline + intelligence + quintessence) - ((10 - purity) - hunger - boredom - age * 0.5)) * 10 + (Math.random() - 0.5) * 10) > (getAlignedInteraction(interactionKeyNumber).getDifficulty())) {
+                //Update Stats And React Properly
+                hunger += myAlignmentInteractions.get(interactionKeyNumber).getHungerChange();
+                purity += myAlignmentInteractions.get(interactionKeyNumber).getPurityChange();
+                boredom += myAlignmentInteractions.get(interactionKeyNumber).getBoredomChange();
+                loyalty += myAlignmentInteractions.get(interactionKeyNumber).getLoyaltyChange();
+                intelligence += myAlignmentInteractions.get(interactionKeyNumber).getIntelligenceChange();
+                discipline += myAlignmentInteractions.get(interactionKeyNumber).getDisciplineChange();
+
+                //REMEMBER which action was taken last
+                interactionTaken = myAlignmentInteractions.get(interactionKeyNumber);
+            } else {
+                hunger += (int) (Math.random() - 0.3) * 2;
+                purity -= (int) (Math.random() - 0.3) * 2;
+                boredom += (int) (Math.random() - 0.3) * 2;
+                loyalty -= (int) (Math.random() - 0.3) * 2;
+
+                interactionTaken = failedInteraction;
+            }
+        } else {
+            if ((2 * loyalty + discipline + intelligence + quintessence - (10 - potence) - (10 - omnipresence) - boredom - age * 0.5) * 10 + (Math.random() - 0.5) * 10 > getAlignedInteraction(interactionKeyNumber).getDifficulty()) {
+
+                //Update Stats And React Properly
+                potence += myAlignmentInteractions.get(interactionKeyNumber).getHungerChange();
+                omnipresence += myAlignmentInteractions.get(interactionKeyNumber).getPurityChange();
+                boredom += myAlignmentInteractions.get(interactionKeyNumber).getBoredomChange();
+                loyalty += myAlignmentInteractions.get(interactionKeyNumber).getLoyaltyChange();
+                intelligence += myAlignmentInteractions.get(interactionKeyNumber).getIntelligenceChange();
+                discipline += myAlignmentInteractions.get(interactionKeyNumber).getDisciplineChange();
+
+                //REMEMBER which action was taken last
+                interactionTaken = myAlignmentInteractions.get(interactionKeyNumber);
+            } else {
+                potence -= (int) (Math.random() - 0.3) * 2;
+                omnipresence -= (int) (Math.random() - 0.3) * 2;
+                boredom += (int) (Math.random() - 0.3) * 2;
+                loyalty -= (int) (Math.random() - 0.3) * 2;
+                interactionTaken = failedInteraction;
+            }
+        }
+    }
+
+    //    public abstract void personalInteraction(int interactionKeyNumber);
+//
+//    public abstract void intrapersonalInteraction(int interactionKeyNumber);
+//
+//    public abstract void alignedInteraction(int interactionKeyNumber);
+    public Interaction getAlignedInteraction(int interactionKeyNumber) {
+        return myAlignmentInteractions.get(interactionKeyNumber);
+    }
+
+    public Interaction getPersonalInteraction(int interactionKey) {
+        return myPersonalInteractions.get(interactionKey);
+    }
+
+    public Interaction getIntrapersonalInteraction(int interactionKey) {
+        return myIntrapersonalInteractions.get(interactionKey);
+    }
 
     public String getGoal() {
         return goal;
@@ -354,4 +535,77 @@ public abstract class Kami {
     public void setFailedInteraction(Interaction failedInteraction) {
         this.failedInteraction = failedInteraction;
     }
+
+    public boolean isInteracting() {
+        return isInteracting;
+    }
+
+    public void setInteracting(boolean interacting) {
+        isInteracting = interacting;
+    }
+
+    public int getLoyaltyLast() {
+        return loyaltyLast;
+    }
+
+    public void setLoyaltyLast(int loyaltyLast) {
+        this.loyaltyLast = loyaltyLast;
+    }
+
+    public int getIntelligenceLast() {
+        return intelligenceLast;
+    }
+
+    public void setIntelligenceLast(int intelligenceLast) {
+        this.intelligenceLast = intelligenceLast;
+    }
+
+    public int getDisciplineLast() {
+        return disciplineLast;
+    }
+
+    public void setDisciplineLast(int disciplineLast) {
+        this.disciplineLast = disciplineLast;
+    }
+
+    public int getBoredomLast() {
+        return boredomLast;
+    }
+
+    public void setBoredomLast(int boredomLast) {
+        this.boredomLast = boredomLast;
+    }
+
+    public int getHungerLast() {
+        return hungerLast;
+    }
+
+    public void setHungerLast(int hungerLast) {
+        this.hungerLast = hungerLast;
+    }
+
+    public int getPurityLast() {
+        return purityLast;
+    }
+
+    public void setPurityLast(int purityLast) {
+        this.purityLast = purityLast;
+    }
+
+    public int getPotenceLast() {
+        return potenceLast;
+    }
+
+    public void setPotenceLast(int potenceLast) {
+        this.potenceLast = potenceLast;
+    }
+
+    public int getOmnipresenceLast() {
+        return omnipresenceLast;
+    }
+
+    public void setOmnipresenceLast(int omnipresenceLast) {
+        this.omnipresenceLast = omnipresenceLast;
+    }
+
 }

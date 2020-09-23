@@ -74,14 +74,17 @@ public class Garden {
 
     public void summon(Kami kami, String kamiName) {
         gardenKami.put(kamiName, kami);
+        changePower(-1);
     }
 
     public void release(String kamiName) {
         if (gardenKami.containsKey(kamiName)) {
             Kami thisKami = gardenKami.get(kamiName);
-//            if (thisKami.getQuintessence() >= thisKami.getAscendanceLevel())
-//                karma += (int) ((thisKami.getQuintessence() / (1+thisKami.getAscendanceLevel())));
-//            else karma -= (thisKami.getAscendanceLevel() - thisKami.getQuintessence())*0.5;
+            if (thisKami.getQuintessence() >= thisKami.getAscendanceLevel()) {
+                karma += (int) (thisKami.getQuintessence() / (thisKami.getAscendanceLevel())) + 3;
+            } else {
+                karma -= (int) ((thisKami.getAscendanceLevel() - thisKami.getQuintessence()) * 0.5);
+            }
             gardenKami.remove(kamiName);
         } else {
             System.out.println("No Kami with that name here resides.");
@@ -98,9 +101,7 @@ public class Garden {
         } else if (power < Math.abs(karma) + 2) {
             power += 2;
         } else power++;
-        for (Kami kami : gardenKami.values()) {
-            kami.tick();
-        }
+
         if (Math.abs(balance) > 2) {
             karma -= (int) (Math.abs(balance) / 3);
         }
@@ -109,6 +110,11 @@ public class Garden {
             balance += getAxiomaticKami().size() - getChaoticKami().size();
         } else if (getChaoticKami().size() - getNeutralKami().size() > (getAxiomaticKami().size())) {
             balance -= getAxiomaticKami().size() - getChaoticKami().size();
+        }
+
+        for (Kami kami : gardenKami.values()) {// THE TICK IS PASSED ON TO EACH KAMI IN MAP
+            System.out.println(gardenKami);
+            kami.tick();
         }
     }
 
@@ -255,6 +261,10 @@ public class Garden {
             }
         }
         return etherealKami;
+    }
+
+    public void changePower(int numberOfPower){
+        power += numberOfPower;
     }
 
     public int getGlobalChoiceA() {

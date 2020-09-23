@@ -14,7 +14,7 @@ public class KamiTest {
 
 
     @Test
-    public void kamiTickShouldIncreaseBoredomInCorporealKami() {
+    public void kamiTickShouldIncreaseBoredom() {
         underTestPhoenix.setBoredom(0);
         underTestPhoenix.tick();
         assertEquals(1, underTestPhoenix.getBoredom());
@@ -29,8 +29,23 @@ public class KamiTest {
 
     @Test
     public void corporealKamiTickShouldReducePurityFrom10To9() {
+        underTestPhoenix.setPurity(10);
         underTestPhoenix.tick();
         assertEquals(9, underTestPhoenix.getPurity());
+    }
+
+    @Test
+    public void kamiTickShouldDecreasePotenceInEtherealKami() {
+        underTestHearthKami.setPotence(10);
+        underTestHearthKami.tick();
+        assertEquals(9, underTestHearthKami.getPotence());
+    }
+
+    @Test
+    public void kamiTickShouldDecreaseOmnipresenceInEtherealKami() {
+        underTestHearthKami.setOmnipresence(10);
+        underTestHearthKami.tick();
+        assertEquals(9, underTestHearthKami.getOmnipresence());
     }
 
     @Test
@@ -53,6 +68,11 @@ public class KamiTest {
 
     @Test
     public void phoenixAlignedInteractionNumber3ShouldIncreaseIntelligenceBy2(){
+        Phoenix underTestPhoenix = new Phoenix("phoenixName", "Phoenix", 3, 1, 0, 1, 0, 0, 0, 10);
+        underTestPhoenix.setIntelligence(0);
+        underTestPhoenix.setLoyalty(10);
+        underTestPhoenix.setDiscipline(10);
+        underTestPhoenix.setPurity(10); //WHY oh WHY is this necessary?!
         underTestPhoenix.alignedInteraction(3);
         assertEquals(2, underTestPhoenix.getIntelligence());
     }
@@ -60,7 +80,7 @@ public class KamiTest {
     @Test
     public void ascendedKamiWillMaintainAMinimumLevelOfAllDegradingStats(){
         underTestGarden.summon(underTestPhoenix, "Faulks");
-        underTestPhoenix.setQuintessence(20);
+        underTestPhoenix.setQuintessence(21);
         underTestPhoenix.setPurity(4);
         underTestPhoenix.setHunger(10);
         underTestGarden.tick();

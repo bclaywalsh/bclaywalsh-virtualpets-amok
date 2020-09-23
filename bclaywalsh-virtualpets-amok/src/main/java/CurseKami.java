@@ -57,7 +57,6 @@ public class CurseKami extends ChaoticKami implements Ethereal {
         ignoredInteraction = new Interaction(0, 0, 0, 0, 1, -1, 0, 0, 2, 2, "", "wandering amidst the shadows of its domain, murmuring darkly to itself", 0, 0, 0);
     }
 
-    @Override
     public void tick() {
         potence--;
         boredom++;

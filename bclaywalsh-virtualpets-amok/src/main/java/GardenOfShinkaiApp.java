@@ -111,7 +111,7 @@ public class GardenOfShinkaiApp {
                     else if (myGarden.getGlobalChoiceA() == 3) myGarden.tollBell();
                     else if (myGarden.getGlobalChoiceA() == 4) myGarden.openGates();
                     else if (myGarden.getGlobalChoiceA() == 5) myGarden.harvestGarden();
-                    myGarden.setPower(myGarden.getPower() - 1);
+                    myGarden.changePower(-1);
                 }
 
                 //RANDOM GLOBAL OPTION 2
@@ -121,7 +121,7 @@ public class GardenOfShinkaiApp {
                     else if (myGarden.getGlobalChoiceB() == 3) myGarden.tollBell();
                     else if (myGarden.getGlobalChoiceB() == 4) myGarden.openGates();
                     else if (myGarden.getGlobalChoiceB() == 5) myGarden.harvestGarden();
-                    myGarden.setPower(myGarden.getPower() - 1);
+                    myGarden.changePower(-1);
                 }
 
                 //FOCUS WILL ON ONE KAMI
@@ -218,7 +218,6 @@ public class GardenOfShinkaiApp {
                             }
                         }
                     }
-
                 } else if (command == 4 && addingAPet) {
                     System.out.println("You can only summon One Kami per cycle");
                 }

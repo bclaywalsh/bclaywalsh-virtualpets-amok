@@ -23,7 +23,7 @@ public class GardenTest {
 
     @Test
     public void shouldBeAbleToSummonHearthKami(){
-        underTestGarden.summon(underTestHearthKami, "Pollus");
+        underTestGarden.summon(underTestHearthKami, "heartKamiName");
         Map kamiRoster = underTestGarden.getGardenKami();
         int gardenSize = kamiRoster.size();
         assertEquals(1,gardenSize);
@@ -43,7 +43,7 @@ public class GardenTest {
     public void releaseKamiShouldReduceGardenSizeFrom2To1(){
         underTestGarden.summon(underTestHearthKami, "Pollus");
         underTestGarden.summon(underTestNatureKami, "Dapple");
-        underTestGarden.release(underTestHearthKami.getName());
+        underTestGarden.release("Pollus");
         assertEquals(1,underTestGarden.getGardenKami().size());
     }
 
@@ -52,8 +52,8 @@ public class GardenTest {
         underTestGarden.summon(underTestNatureKami, "Dapple");
         underTestNatureKami.setQuintessence(18);
         underTestNatureKami.setAscendanceLevel(6);
-        underTestGarden.release(underTestNatureKami.getName());
-        assertEquals(5,underTestGarden.getKarma());
+        underTestGarden.release("Dapple");
+        assertEquals(6,underTestGarden.getKarma());
     }
 
     @Test

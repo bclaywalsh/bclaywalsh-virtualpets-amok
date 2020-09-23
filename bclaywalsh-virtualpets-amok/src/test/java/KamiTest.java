@@ -14,11 +14,16 @@ public class KamiTest {
 
 
     @Test
-    public void kamiTickShouldIncreaseBoredomAndHungerInCorporealKami() {
+    public void kamiTickShouldIncreaseBoredomInCorporealKami() {
         underTestPhoenix.setBoredom(0);
-        underTestPhoenix.setHunger(0);
         underTestPhoenix.tick();
         assertEquals(1, underTestPhoenix.getBoredom());
+    }
+
+    @Test
+    public void kamiTickShouldIncreaseHungerInCorporealKami() {
+        underTestPhoenix.setHunger(0);
+        underTestPhoenix.tick();
         assertEquals(1, underTestPhoenix.getHunger());
     }
 
@@ -61,6 +66,5 @@ public class KamiTest {
         underTestGarden.tick();
         assertEquals(8, underTestPhoenix.getPurity());
         assertEquals(3,underTestPhoenix.getHunger());
-
     }
 }

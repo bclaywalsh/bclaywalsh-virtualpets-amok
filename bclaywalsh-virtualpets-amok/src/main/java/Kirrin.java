@@ -1,23 +1,18 @@
 public class Kirrin extends NeutralKami implements Corporeal {
-    private int hunger = 3;
-    private int purity = 9;
-    private int boredom = 2;
-    private int intelligence = 2;
-    private int discipline = 3;
-    private int loyalty = 2;
-    private int quintessence = 2;
-    private int age = 5;
-    private int ascendanceLevel = 18;
-    private Interaction failedInteraction;
-    private Interaction ignoredInteraction;
-    private String goal = "witness and channel profound acts of destiny in this world.";
-    private Interaction interactionTaken = new Interaction(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", "watching intently the realm about them", 0, 0, 0);
-
-
     public Kirrin(String kamiName, String kamiSpecies, int quintessence, int loyalty, int intelligence, int discipline, int boredom, int age, int hunger, int purity) {
         super(kamiName, kamiSpecies, quintessence, loyalty, intelligence, discipline, boredom, age);
         this.hunger = hunger;
         this.purity = purity;
+        this.boredom = boredom;
+        this.intelligence = intelligence;
+        this.discipline = discipline;
+        this.loyalty = loyalty;
+        this.quintessence = quintessence;
+        this.age = age;
+        ascendanceLevel = 18;
+        goal = "witness and channel profound acts of destiny in this world.";
+        interactionTaken = new Interaction(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", "watching intently the realm about them", 0, 0, 0);
+
         myPersonalInteractions.put(1, interactionA);
         myPersonalInteractions.put(2, interactionB);
         myPersonalInteractions.put(3, interactionC);
@@ -37,6 +32,16 @@ public class Kirrin extends NeutralKami implements Corporeal {
 
     public Kirrin(String kamiName, String kamiSpecies) {
         super(kamiName, kamiSpecies);
+        this.hunger = 3;
+        this.purity = 9;
+        this.boredom = 2;
+        this.intelligence = 2;
+        this.discipline = 3;
+        this.loyalty = 2;
+        this.quintessence = 2;
+        this.age = 5;
+        this.goal = "witness and channel profound acts of destiny in this world.";
+        interactionTaken = new Interaction(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", "watching intently the realm about them", 0, 0, 0);
         myPersonalInteractions.put(1, interactionA);
         myPersonalInteractions.put(2, interactionB);
         myPersonalInteractions.put(3, interactionC);
@@ -52,115 +57,5 @@ public class Kirrin extends NeutralKami implements Corporeal {
         //Failed to Heed your words
         failedInteraction = new Interaction(0, 0, (int) (Math.random() * -1.2), (int) (Math.random() * -1.2), (int) (Math.random() * 1.7), (int) (Math.random() * -1.2), (int) (Math.random() * 1.7), (int) (Math.random() * -1.2), (int) (Math.random() * -1.2), 0, "", "returning diminished from a mysterious absence, having failed to fully take advantage of your aid", 0, 0, 0);
         ignoredInteraction = new Interaction(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", "silently wandering beyond the edges of vision", 0, 0, 0);
-    }
-
-    public void tick() {
-        this.hunger++;
-        this.boredom++;
-        this.purity--;
-        if (hunger > 5) {
-            if (Math.random() + (hunger * 0.1) > 1) quintessence--;
-            if (hunger > 10) hunger = 10;
-        }
-        if (purity < 5) {
-            if (Math.random() + ((10 - purity) * 0.1) > 1) quintessence--;
-            if (purity < 0) purity = 0;
-        }
-        if (intelligence < 0) intelligence = 0;
-        if (discipline < 0) discipline = 0;
-        if (loyalty < 0) loyalty = 0;
-        if (boredom > 10) boredom = 10;
-        if (quintessence > ascendanceLevel) {
-            if (hunger > 3) hunger = 3;
-            if (purity < 8) purity = 8;
-        }
-    }
-
-    @Override
-    public void addPersonalInteraction(Interaction thisInteraction) {
-
-    }
-
-    @Override
-    public void addIntrapersonalInteraction(Interaction thisInteraction) {
-
-    }
-
-    @Override
-    public void personalInteraction(int interactionKeyNumber) {
-
-    }
-
-    @Override
-    public void intrapersonalInteraction(int interactionKeyNumber) {
-
-    }
-
-    public void alignedInteraction(int interactionKeyNumber) {
-        if ((2 * loyalty + discipline + intelligence + quintessence + (10 - purity) - hunger - boredom - age * 0.5) * 10 + (Math.random() - 0.5) * 10 > getPersonalInteraction(interactionKeyNumber).getDifficulty()) {
-            //Update Stats And React Properly
-            hunger += myAlignmentInteractions.get(interactionKeyNumber).getHungerChange();
-            purity += myAlignmentInteractions.get(interactionKeyNumber).getPurityChange();
-            boredom += myAlignmentInteractions.get(interactionKeyNumber).getBoredomChange();
-            loyalty += myAlignmentInteractions.get(interactionKeyNumber).getLoyaltyChange();
-            intelligence += myAlignmentInteractions.get(interactionKeyNumber).getIntelligenceChange();
-            discipline += myAlignmentInteractions.get(interactionKeyNumber).getDisciplineChange();
-
-            //REMEMBER which action was taken last
-            interactionTaken = myAlignmentInteractions.get(interactionKeyNumber);
-        } else {
-            hunger += (int) (Math.random() - 0.3) * 2;
-            purity -= (int) (Math.random() - 0.3) * 2;
-            boredom += (int) (Math.random() - 0.3) * 2;
-            loyalty -= (int) (Math.random() - 0.3) * 2;
-
-            interactionTaken = failedInteraction;
-        }
-    }
-
-    @Override
-    public Interaction getAlignedInteraction(int interactionKeyNumber) {
-        return myAlignmentInteractions.get(interactionKeyNumber);
-    }
-
-    @Override
-    public Interaction getPersonalInteraction(int interactionKey) {
-        return myPersonalInteractions.get(interactionKey);
-    }
-
-    @Override
-    public Interaction getIntrapersonalInteraction(int interactionKey) {
-        return myIntrapersonalInteractions.get(interactionKey);
-    }
-
-    public int getHunger() {
-        return hunger;
-    }
-
-    public void setHunger(int hunger) {
-        this.hunger = hunger;
-    }
-
-    public int getPurity() {
-        return purity;
-    }
-
-    public void setPurity(int purity) {
-        this.purity = purity;
-    }
-
-    @Override
-    public Interaction getInteractionTaken() {
-        return interactionTaken;
-    }
-
-    @Override
-    public void setInteractionTaken(Interaction interactionTaken) {
-        this.interactionTaken = interactionTaken;
-    }
-
-    @Override
-    public String getGoal() {
-        return "witness and channel profound acts of destiny in this world.";
     }
 }

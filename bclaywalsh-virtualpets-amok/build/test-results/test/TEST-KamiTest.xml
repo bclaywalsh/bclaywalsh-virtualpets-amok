@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="KamiTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2020-09-23T21:00:23" hostname="UNIT2020-1" time="0.047">
+<testsuite name="KamiTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2020-09-24T15:10:15" hostname="UNIT2020-1" time="0.047">
   <properties/>
-  <testcase name="kamiTickShouldDecreasePotenceInEtherealKami()" classname="KamiTest" time="0.019"/>
-  <testcase name="corporealKamiTickShouldReducePurityFrom10To9()" classname="KamiTest" time="0.0"/>
+  <testcase name="kamiTickShouldDecreasePotenceInEtherealKami()" classname="KamiTest" time="0.026"/>
+  <testcase name="corporealKamiTickShouldReducePurityFrom10To9()" classname="KamiTest" time="0.002"/>
   <testcase name="phoenixShouldInitializeWithAPersonalInteractionMapOf4AndAnIntrapersonalInteractionMapOf4()" classname="KamiTest" time="0.001"/>
   <testcase name="phoenixAlignedInteractionNumber3ShouldIncreaseIntelligenceBy2()" classname="KamiTest" time="0.001"/>
-  <testcase name="interactionAFromCorporealInterfaceShouldIncreaseLoyaltyFrom1To2()" classname="KamiTest" time="0.0"/>
+  <testcase name="interactionAFromCorporealInterfaceShouldIncreaseLoyaltyFrom1To2()" classname="KamiTest" time="0.001"/>
   <testcase name="phoenixIntrapersonalInteractionNumber2ShouldIncreaseLoyaltyFrom1To3()" classname="KamiTest" time="0.001"/>
   <testcase name="kamiTickShouldDecreaseOmnipresenceInEtherealKami()" classname="KamiTest" time="0.001"/>
   <testcase name="kamiTickShouldIncreaseBoredom()" classname="KamiTest" time="0.001"/>
   <testcase name="kamiTickShouldIncreaseHungerInCorporealKami()" classname="KamiTest" time="0.001"/>
-  <testcase name="ascendedKamiWillMaintainAMinimumLevelOfAllDegradingStats()" classname="KamiTest" time="0.012"/>
-  <system-out><![CDATA[{Faulks=phoenixName the Phoenix}
-]]></system-out>
+  <testcase name="ascendedKamiWillMaintainAMinimumLevelOfAllDegradingStats()" classname="KamiTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

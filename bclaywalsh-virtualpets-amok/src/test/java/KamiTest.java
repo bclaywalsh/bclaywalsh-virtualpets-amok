@@ -1,8 +1,11 @@
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class KamiTest {
+
     Garden underTestGarden = new Garden();
     HearthKami underTestHearthKami = new HearthKami("hearthKamiName", "Hearth Kami", 2, 0, 2, 3, 3, 0, 0, 0);
     NatureKami underTestNatureKami = new NatureKami("natureKamiName", "Nature Kami", 3, 1, 0, 1, 0, 0, 0, 0);
@@ -13,38 +16,44 @@ public class KamiTest {
     Interaction underTestInteraction = new Interaction(0, 1, 0, 0, 0, 0, 0, 0, 0, 0, "Interaction?", "Interaction.", 0, 0, 0);
 
 
+
     @Test
     public void kamiTickShouldIncreaseBoredom() {
         underTestPhoenix.setBoredom(0);
-        underTestPhoenix.tick();
+        underTestGarden.summon(underTestPhoenix, underTestPhoenix.getName());
+        underTestGarden.tick();
         assertEquals(1, underTestPhoenix.getBoredom());
     }
 
     @Test
     public void kamiTickShouldIncreaseHungerInCorporealKami() {
+        underTestGarden.summon(underTestPhoenix, underTestPhoenix.getName());
         underTestPhoenix.setHunger(0);
-        underTestPhoenix.tick();
+        underTestGarden.tick();
         assertEquals(1, underTestPhoenix.getHunger());
     }
 
     @Test
     public void corporealKamiTickShouldReducePurityFrom10To9() {
+        underTestGarden.summon(underTestPhoenix, underTestPhoenix.getName());
         underTestPhoenix.setPurity(10);
-        underTestPhoenix.tick();
+        underTestGarden.tick();
         assertEquals(9, underTestPhoenix.getPurity());
     }
 
     @Test
     public void kamiTickShouldDecreasePotenceInEtherealKami() {
+        underTestGarden.summon(underTestHearthKami, underTestHearthKami.getName());
         underTestHearthKami.setPotence(10);
-        underTestHearthKami.tick();
+        underTestGarden.tick();
         assertEquals(9, underTestHearthKami.getPotence());
     }
 
     @Test
     public void kamiTickShouldDecreaseOmnipresenceInEtherealKami() {
+        underTestGarden.summon(underTestHearthKami, underTestHearthKami.getName());
         underTestHearthKami.setOmnipresence(10);
-        underTestHearthKami.tick();
+        underTestGarden.tick();
         assertEquals(9, underTestHearthKami.getOmnipresence());
     }
 
@@ -79,7 +88,7 @@ public class KamiTest {
 
     @Test
     public void ascendedKamiWillMaintainAMinimumLevelOfAllDegradingStats(){
-        underTestGarden.summon(underTestPhoenix, "Faulks");
+        underTestGarden.summon(underTestPhoenix, underTestPhoenix.getName());
         underTestPhoenix.setQuintessence(21);
         underTestPhoenix.setPurity(4);
         underTestPhoenix.setHunger(10);

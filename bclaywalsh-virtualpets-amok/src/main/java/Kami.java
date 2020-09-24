@@ -66,61 +66,70 @@ public abstract class Kami {
         this.species = kamiSpecies;
     }
 
-    public abstract void tick();
 
-    //      //UPDATE STAT CHANGES FROM LAST ROUND FROM ALL SOURCES
-    //    public void tick() {
-    //    loyaltyLast = loyalty;
-    //    boredomLast = boredom;
-    //    intelligenceLast = intelligence;
-    //    disciplineLast = discipline;
-    //    hungerLast = hunger;
-    //    purityLast = purity;
-    //    potenceLast = potence;
-    //    omnipresenceLast = omnipresence;
-    //    quintessenceLast = quintessence;
-    //        if (this instanceof Corporeal) {
-    //            hunger++;
-    //            purity--;
-    ////            if (hunger > 5) {
-    ////                if (Math.random() + ((hunger - 5) * 0.1) > 1) quintessence--;
-    ////                if (hunger > 10) hunger = 10;
-    ////            } else if (hunger < 0) hunger = 0;
-    ////            if (purity < 5) {
-    ////                if (Math.random() + ((5 - purity) * 0.1) > 1) quintessence--;
-    ////                if (purity < 0) purity = 0;
-    ////            } else if (purity > 10) purity = 10;
-    ////
-    ////            if (quintessence > ascendanceLevel) { // ASCENDED CORPOREAL STAT CAPS
-    ////                if (hunger > 3) hunger = 3;
-    ////                if (purity < 8) purity = 8;
-    ////            }
-    //        }
-    //        if (this instanceof Ethereal) {
-    //            potence--;
-    //            omnipresence--;
-    ////            if (potence < 5) {
-    ////                if (Math.random() + ((5 - potence) * 0.1) > 1) quintessence--;
-    ////                if (potence < 0) potence = 0;
-    ////            } else if (potence > 10) potence = 10;
-    ////            if (omnipresence < 5) {
-    ////                if (Math.random() + ((5 - omnipresence) * 0.1) > 1) quintessence--;
-    ////                if (omnipresence < 0) omnipresence = 0;
-    ////            } else if (omnipresence > 10) omnipresence = 10;
-    ////
-    ////            if (quintessence > ascendanceLevel) {  // ASCENDED ETHEREAL STAT CAPS
-    ////                if (potence < 8) potence = 8;
-    ////                if (omnipresence < 8) omnipresence = 8;
-    ////            }
-    //        }
-    //        //COMMON STAT CHANGES
-    //        boredom++;
-    ////        if (intelligence < 0) intelligence = 0;
-    ////        if (discipline < 0) discipline = 0;
-    ////        if (loyalty < 0) loyalty = 0;
-    ////        if (boredom > 10) boredom = 10;
-    ////        if (boredom<0) boredom = 0;
-    //    }
+    public void tick() {
+        loyaltyLast = loyalty;
+        boredomLast = boredom;
+        intelligenceLast = intelligence;
+        disciplineLast = discipline;
+        hungerLast = hunger;
+        purityLast = purity;
+        potenceLast = potence;
+        omnipresenceLast = omnipresence;
+        quintessenceLast = quintessence;
+
+        if (this instanceof Corporeal){
+            hunger += 1;
+            purity -= 1;
+            if (hunger > 5) {//                 CHANCE TO HARM QUINTESSENCE IF STATS ARE POOR
+                if (Math.random() + ((hunger - 5) * 0.1) > 1) quintessence--;
+                if (hunger > 10) hunger = 10;
+            } else if (hunger < 0) hunger = 0;
+            if (purity < 5) {
+                if (Math.random() + ((5 - purity) * 0.1) > 1) quintessence--;
+                if (purity < 0) purity = 0;
+            } else if (purity > 10) purity = 10;
+
+            if (quintessence > ascendanceLevel) { // ASCENDED CORPOREAL STAT CAPS
+                if (hunger > 3) hunger = 3;
+                if (purity < 8) purity = 8;
+            }
+        }
+        if (this instanceof Ethereal){
+            potence -= 1;
+            omnipresence -= 1;
+            if (potence < 5) {//                 CHANCE TO HARM QUINTESSENCE IF STATS ARE POOR
+                if (Math.random() + ((5 - potence) * 0.1) > 1) quintessence--;
+                if (potence <0) potence = 0;
+            } else if (potence > 10) potence = 10;
+            if (omnipresence < 5) {
+                if (Math.random() + ((5 - omnipresence) * 0.1) > 1) quintessence--;
+                if (omnipresence < 0) omnipresence = 0;
+            } else if (omnipresence > 10) omnipresence = 10;
+
+            if (quintessence > ascendanceLevel) { // ASCENDED CORPOREAL STAT CAPS
+                if (potence < 8) potence = 8;
+                if (omnipresence < 8) omnipresence = 8;
+            }
+        }
+
+        //COMMON STAT CHANGES
+        boredom++;
+        if (intelligence < 0) intelligence = 0;
+        if (discipline < 0) discipline = 0;
+        if (loyalty < 0) loyalty = 0;
+        if (boredom > 10) boredom = 10;
+        if (boredom < 0) boredom = 0;
+
+        //ASCENDED STAT CAPS
+        if (quintessence >= ascendanceLevel) {
+            if (hunger > 3) hunger = 3;
+            if (purity < 8) purity = 8;
+            if (potence < 8) potence = 8;
+            if (omnipresence < 8) omnipresence = 8;
+        }
+    }
+
     public void generateChoices() {
         //randomly select two different interactions from each sort of list to offer the player
         personalInteraction1 = myPersonalInteractions.get((int) (Math.ceil(Math.random() * myPersonalInteractions.size())));

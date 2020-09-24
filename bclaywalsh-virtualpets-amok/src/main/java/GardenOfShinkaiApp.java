@@ -35,7 +35,13 @@ public class GardenOfShinkaiApp {
             System.out.println("\n-))~------------------------------------------------------------------------------------~~~~~~~~~~~~~~~/~/~/");
             System.out.println("((>=================================================================================================================/");
             System.out.println("Your karma is rank (" + myGarden.getKarma() + ") and in this cycle you have (" + myGarden.getPower() + ") thaums of power.");
-            System.out.println("It is a new cycle, and new opportunities have emerged to shape destiny.");
+            if (Math.abs(myGarden.getBalance()) < 3) {
+                System.out.println("It is a new cycle, and new opportunities have emerged to shape destiny.");
+            } else if (myGarden.getBalance() < -2) {
+                System.out.println("Your garden is growing wild and chaotic. Balance the chi of your Kami to prosper more fully.");
+            } else {
+                System.out.println("Your garden is growing stagnant and desolate. Balance the chi of your Kami to prosper more fully.");
+            }
             System.out.println("((>=============================================================================================================/");
             System.out.println("-))~------------------------------------------------------------------------------------~~///(\n");
 
@@ -69,7 +75,7 @@ public class GardenOfShinkaiApp {
                 }
                 if (kami instanceof Corporeal) {
                     if (kami.getHunger() > 4) {
-                        System.out.println("* " + kami.getName() + " seems to be more gaunt than usual.");
+                        System.out.println("* " + kami.getName() + " is ravenously hungry.");
                     }
                     if (kami.getPurity() < 7) {
                         System.out.println("* " + kami.getName() + " is losing their luster.");

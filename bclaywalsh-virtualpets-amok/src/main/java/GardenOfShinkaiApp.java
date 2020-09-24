@@ -56,7 +56,7 @@ public class GardenOfShinkaiApp {
                 System.out.println("    ~~~~--------------------------------------------------------------------------------------~~~~");
                 if (kami instanceof Corporeal) {
                     System.out.println(" --->) *Hunger: " + kami.getHunger() + "*\t||\t*Purity: " + kami.getPurity() + "*\t||\t*Boredom: " + kami.getBoredom() + "* (<---");
-                } else if (kami instanceof Ethereal){
+                } else if (kami instanceof Ethereal) {
                     System.out.println(" --->) *Potence: " + kami.getPotence() + "*\t||\t*Omnipresence: " + kami.getOmnipresence() + "*\t||\t*Boredom: " + kami.getBoredom() + "* (<---");
                 }
                 System.out.println("\tIntelligence: " + kami.getIntelligence() + "\t||\tDiscipline: " + kami.getDiscipline() + "\t||\tLoyalty: " + kami.getLoyalty());
@@ -134,7 +134,7 @@ public class GardenOfShinkaiApp {
                         System.out.println("Which Kami would you like to approach?\n   ->) enter its name below or enter 'back'");
                         String kamiName = inputString.nextLine().trim();
                         System.out.println("got " + kamiName);
-                        if (kamiName.equals("back")) break;
+                        if (kamiName.equals("back")) continue;
                         else if (myGarden.getGardenKami().containsKey(kamiName)) {
                             System.out.println("Generating Choices:");
                             myGarden.getGardenKami().get(kamiName).generateChoices();

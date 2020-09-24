@@ -16,7 +16,6 @@ public class KamiTest {
     Interaction underTestInteraction = new Interaction(0, 1, 0, 0, 0, 0, 0, 0, 0, 0, "Interaction?", "Interaction.", 0, 0, 0);
 
 
-
     @Test
     public void kamiTickShouldIncreaseBoredom() {
         underTestPhoenix.setBoredom(0);
@@ -70,13 +69,13 @@ public class KamiTest {
     }
 
     @Test
-    public void phoenixIntrapersonalInteractionNumber2ShouldIncreaseLoyaltyFrom1To3(){
+    public void phoenixIntrapersonalInteractionNumber2ShouldIncreaseLoyaltyFrom1To3() {
         underTestPhoenix.intrapersonalInteraction(2);
         assertEquals(3, underTestPhoenix.getLoyalty());
     }
 
     @Test
-    public void phoenixAlignedInteractionNumber3ShouldIncreaseIntelligenceBy2(){
+    public void phoenixAlignedInteractionNumber3ShouldIncreaseIntelligenceBy2() {
         Phoenix underTestPhoenix = new Phoenix("phoenixName", "Phoenix", 3, 1, 0, 1, 0, 0, 0, 10);
         underTestPhoenix.setIntelligence(0);
         underTestPhoenix.setLoyalty(10);
@@ -87,13 +86,13 @@ public class KamiTest {
     }
 
     @Test
-    public void ascendedKamiWillMaintainAMinimumLevelOfAllDegradingStats(){
+    public void ascendedKamiWillMaintainAMinimumLevelOfAllDegradingStats() {
         underTestGarden.summon(underTestPhoenix, underTestPhoenix.getName());
         underTestPhoenix.setQuintessence(21);
         underTestPhoenix.setPurity(4);
         underTestPhoenix.setHunger(10);
         underTestGarden.tick();
         assertEquals(8, underTestPhoenix.getPurity());
-        assertEquals(3,underTestPhoenix.getHunger());
+        assertEquals(3, underTestPhoenix.getHunger());
     }
 }

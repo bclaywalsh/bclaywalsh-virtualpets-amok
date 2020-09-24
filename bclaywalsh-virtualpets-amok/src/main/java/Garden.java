@@ -52,17 +52,17 @@ public class Garden {
         double KamiA = Math.random();
         double KamiB = Math.random();
         double KamiC = Math.random();
-        if (KamiA <0.7) {
+        if (KamiA < 0.7) {
             thisKamiA = new HearthKami("Pollus", "Hearth Kami");
         } else {
             thisKamiA = new CurseKami("Writhe", "Curse Kami");
         }
-        if (KamiB <0.7) {
+        if (KamiB < 0.7) {
             thisKamiB = new NatureKami("Dapple", "Nature Kami");
         } else {
             thisKamiB = new Kirrin("Seto", "Kirrin");
         }
-        if (KamiC <0.7) {
+        if (KamiC < 0.7) {
             thisKamiC = new Phoenix("Anthrafel", "Phoenix");
         } else {
             thisKamiC = new Dragon("Relcorr", "Dragon");
@@ -129,7 +129,6 @@ public class Garden {
         System.out.println("4: <-back");
         boolean ok = false;
         while (!ok) {
-            inputInteger.next();
             thisCommand = inputInteger.nextInt();
             if (thisCommand == 1 && power >= thisKami.getPersonalInteraction1().getPowerCost()) {
                 thisKami.personalInteraction(1);
@@ -268,7 +267,7 @@ public class Garden {
         return etherealKami;
     }
 
-    public void changePower(int numberOfPower){
+    public void changePower(int numberOfPower) {
         power += numberOfPower;
     }
 

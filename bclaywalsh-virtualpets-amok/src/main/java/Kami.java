@@ -33,19 +33,31 @@ public abstract class Kami {
 
 
     protected Interaction interactionTaken; //  ALIASING! WOOHOO!
-    protected Interaction personalInteraction1;
-    protected Interaction personalInteraction2;
-    protected Interaction intrapersonalInteraction1;
-    protected Interaction intrapersonalInteraction2;
-    protected Interaction alignmentInteraction1;
-    protected Interaction alignmentInteraction2;
+    protected Interaction personalInteraction;
+    protected Interaction intrapersonalInteraction;
+    protected Interaction alignmentInteraction;
     protected Interaction ignoredInteraction;
     protected Interaction failedInteraction;
     protected int personalInteractionNumber = 5;
     protected int intrapersonalInteractionNumber = 5;
+    protected int alignmentInteractionNumber = 5;
+    protected Interaction personalInteraction1;
+    protected Interaction personalInteraction2;
+    protected Interaction personalInteraction3;
+    protected Interaction personalInteraction4;
+    protected Interaction intrapersonalInteraction1;
+    protected Interaction intrapersonalInteraction2;
+    protected Interaction intrapersonalInteraction3;
+    protected Interaction intrapersonalInteraction4;
+    protected Interaction alignmentInteraction1;
+
+    protected Interaction alignmentInteraction2;
+    protected Interaction alignmentInteraction3;
+    protected Interaction alignmentInteraction4;
 
 
     protected Map<Integer, Interaction> myPersonalInteractions = new HashMap<>();
+
     protected Map<Integer, Interaction> myIntrapersonalInteractions = new HashMap<>();
     protected Map<Integer, Interaction> myAlignmentInteractions = new HashMap<>();
 
@@ -78,7 +90,7 @@ public abstract class Kami {
         omnipresenceLast = omnipresence;
         quintessenceLast = quintessence;
 
-        if (this instanceof Corporeal){
+        if (this instanceof Corporeal) {
             hunger += 1;
             purity -= 1;
             if (hunger > 5) {//                 CHANCE TO HARM QUINTESSENCE IF STATS ARE POOR
@@ -95,12 +107,12 @@ public abstract class Kami {
                 if (purity < 8) purity = 8;
             }
         }
-        if (this instanceof Ethereal){
+        if (this instanceof Ethereal) {
             potence -= 1;
             omnipresence -= 1;
             if (potence < 5) {//                 CHANCE TO HARM QUINTESSENCE IF STATS ARE POOR
                 if (Math.random() + ((5 - potence) * 0.1) > 1) quintessence--;
-                if (potence <0) potence = 0;
+                if (potence < 0) potence = 0;
             } else if (potence > 10) potence = 10;
             if (omnipresence < 5) {
                 if (Math.random() + ((5 - omnipresence) * 0.1) > 1) quintessence--;
@@ -132,236 +144,12 @@ public abstract class Kami {
 
     public void generateChoices() {
         //randomly select two different interactions from each sort of list to offer the player
-        personalInteraction1 = myPersonalInteractions.get((int) (Math.ceil(Math.random() * myPersonalInteractions.size())));
-        do {
-            personalInteraction2 = myPersonalInteractions.get((int) (Math.ceil(Math.random() * myPersonalInteractions.size())));
-        } while (personalInteraction1 == personalInteraction2);
-
-        intrapersonalInteraction1 = myIntrapersonalInteractions.get((int) (Math.ceil(Math.random() * myIntrapersonalInteractions.size())));
-        do {
-            intrapersonalInteraction2 = myIntrapersonalInteractions.get((int) (Math.ceil(Math.random() * myIntrapersonalInteractions.size())));
-        } while (intrapersonalInteraction1 == intrapersonalInteraction2);
-
-        alignmentInteraction1 = myAlignmentInteractions.get((int) (Math.ceil(Math.random() * myAlignmentInteractions.size())));
-        do {
-            alignmentInteraction2 = myAlignmentInteractions.get((int) (Math.ceil(Math.random() * myAlignmentInteractions.size())));
-        } while (alignmentInteraction1 == alignmentInteraction2);
-    }
-
-    public String toString() {
-        return name + " the " + species;
-    }
-
-
-    public int getHunger() {
-        return hunger;
-    }
-
-    public void setHunger(int hunger) {
-        this.hunger = hunger;
-    }
-
-    public int getPurity() {
-        return purity;
-    }
-
-    public void setPurity(int purity) {
-        this.purity = purity;
-    }
-
-    public int getPotence() {
-        return potence;
-    }
-
-    public void setPotence(int potence) {
-        this.potence = potence;
-    }
-
-    public int getOmnipresence() {
-        return omnipresence;
-    }
-
-    public void setOmnipresence(int omnipresence) {
-        this.omnipresence = omnipresence;
-    }
-
-    public Interaction getPersonalInteraction1() {
-        return personalInteraction1;
-    }
-
-    public void setPersonalInteraction1(Interaction personalInteraction1) {
-        this.personalInteraction1 = personalInteraction1;
-    }
-
-    public Interaction getPersonalInteraction2() {
-        return personalInteraction2;
-    }
-
-    public void setPersonalInteraction2(Interaction personalInteraction2) {
-        this.personalInteraction2 = personalInteraction2;
-    }
-
-    public Interaction getIntrapersonalInteraction1() {
-        return intrapersonalInteraction1;
-    }
-
-    public void setIntrapersonalInteraction1(Interaction intrapersonalInteraction1) {
-        this.intrapersonalInteraction1 = intrapersonalInteraction1;
-    }
-
-    public Interaction getIntrapersonalInteraction2() {
-        return intrapersonalInteraction2;
-    }
-
-    public void setIntrapersonalInteraction2(Interaction intrapersonalInteraction2) {
-        this.intrapersonalInteraction2 = intrapersonalInteraction2;
-    }
-
-    public Interaction getAlignmentInteraction1() {
-        return alignmentInteraction1;
-    }
-
-    public void setAlignmentInteraction1(Interaction alignmentInteraction1) {
-        this.alignmentInteraction1 = alignmentInteraction1;
-    }
-
-    public Interaction getAlignmentInteraction2() {
-        return alignmentInteraction2;
-    }
-
-    public int getAlignmentInteractionNumber() {
-        return alignmentInteractionNumber;
-    }
-
-    public void setAlignmentInteractionNumber(int alignmentInteractionNumber) {
-        this.alignmentInteractionNumber = alignmentInteractionNumber;
-    }
-
-    protected int alignmentInteractionNumber = 5;
-
-    public void setAlignmentInteraction2(Interaction alignmentInteraction2) {
-        this.alignmentInteraction2 = alignmentInteraction2;
-    }
-
-    public void setMyPersonalInteractions(Map<Integer, Interaction> myPersonalInteractions) {
-        this.myPersonalInteractions = myPersonalInteractions;
-    }
-
-    public void setMyIntrapersonalInteractions(Map<Integer, Interaction> myIntrapersonalInteractions) {
-        this.myIntrapersonalInteractions = myIntrapersonalInteractions;
-    }
-
-    public Map<Integer, Interaction> getMyAlignmentInteractions() {
-        return myAlignmentInteractions;
-    }
-
-    public void setMyAlignmentInteractions(Map<Integer, Interaction> myAlignmentInteractions) {
-        this.myAlignmentInteractions = myAlignmentInteractions;
-    }
-
-    public int getBoredom() {
-        return boredom;
-    }
-
-    public void setBoredom(int boredom) {
-        this.boredom = boredom;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSpecies() {
-        return species;
-    }
-
-    public void setSpecies(String species) {
-        this.species = species;
-    }
-
-    public int getQuintessence() {
-        return quintessence;
-    }
-
-    public void setQuintessence(int quintessence) {
-        this.quintessence = quintessence;
-    }
-
-    public int getLoyalty() {
-        return loyalty;
-    }
-
-    public void setLoyalty(int loyalty) {
-        this.loyalty = loyalty;
-    }
-
-    public int getIntelligence() {
-        return intelligence;
-    }
-
-    public void setIntelligence(int intelligence) {
-        this.intelligence = intelligence;
-    }
-
-    public int getDiscipline() {
-        return discipline;
-    }
-
-    public void setDiscipline(int discipline) {
-        this.discipline = discipline;
-    }
-
-    public int getAscendanceLevel() {
-        return ascendanceLevel;
-    }
-
-    public void setAscendanceLevel(int ascendanceLevel) {
-        this.ascendanceLevel = ascendanceLevel;
-    }
-
-    public int getQuintessenceLast() {
-        return quintessenceLast;
-    }
-
-    public void setQuintessenceLast(int quintessenceLast) {
-        this.quintessenceLast = quintessenceLast;
-    }
-
-
-    public Map<Integer, Interaction> getMyPersonalInteractions() {
-        return myPersonalInteractions;
-    }
-
-    public Map<Integer, Interaction> getMyIntrapersonalInteractions() {
-        return myIntrapersonalInteractions;
-    }
-
-    public void setMyInteractions(Map<Integer, Interaction> myInteractions) {
-        this.myPersonalInteractions = myInteractions;
-    }
-
-
-    public void addPersonalInteraction(Interaction thisInteraction) {
-        myPersonalInteractions.put(personalInteractionNumber, thisInteraction);
-        personalInteractionNumber++;
-    }
-
-    public void addIntrapersonalInteraction(Interaction thisInteraction) {
-        myPersonalInteractions.put(intrapersonalInteractionNumber + 10, thisInteraction);
-        intrapersonalInteractionNumber++;
+        System.out.println(myPersonalInteractions);
+        System.out.println(myIntrapersonalInteractions);
+        System.out.println(myAlignmentInteractions);
+        personalInteraction = myPersonalInteractions.get((int) (Math.ceil(Math.random() * myPersonalInteractions.size())));
+        intrapersonalInteraction = myIntrapersonalInteractions.get((int) (Math.ceil(Math.random() * myIntrapersonalInteractions.size())));
+        alignmentInteraction = myAlignmentInteractions.get((int) (Math.ceil(Math.random() * myAlignmentInteractions.size())));
     }
 
     public void personalInteraction(int interactionKeyNumber) {
@@ -496,6 +284,7 @@ public abstract class Kami {
         }
     }
 
+
     //    public abstract void personalInteraction(int interactionKeyNumber);
 //
 //    public abstract void intrapersonalInteraction(int interactionKeyNumber);
@@ -617,4 +406,307 @@ public abstract class Kami {
         this.omnipresenceLast = omnipresenceLast;
     }
 
+
+    public Interaction getPersonalInteraction() {
+        return personalInteraction;
+    }
+
+    public void setPersonalInteraction(Interaction personalInteraction) {
+        this.personalInteraction = personalInteraction;
+    }
+
+    public Interaction getIntrapersonalInteraction() {
+        return intrapersonalInteraction;
+    }
+
+    public void setIntrapersonalInteraction(Interaction intrapersonalInteraction) {
+        this.intrapersonalInteraction = intrapersonalInteraction;
+    }
+
+    public Interaction getAlignmentInteraction() {
+        return alignmentInteraction;
+    }
+
+    public void setAlignmentInteraction(Interaction alignmentInteraction) {
+        this.alignmentInteraction = alignmentInteraction;
+    }
+
+    public int getPersonalInteractionNumber() {
+        return personalInteractionNumber;
+    }
+
+    public void setPersonalInteractionNumber(int personalInteractionNumber) {
+        this.personalInteractionNumber = personalInteractionNumber;
+    }
+
+    public int getIntrapersonalInteractionNumber() {
+        return intrapersonalInteractionNumber;
+    }
+
+    public void setIntrapersonalInteractionNumber(int intrapersonalInteractionNumber) {
+        this.intrapersonalInteractionNumber = intrapersonalInteractionNumber;
+    }
+
+    public Interaction getPersonalInteraction2() {
+        return personalInteraction2;
+    }
+
+    public void setPersonalInteraction2(Interaction personalInteraction2) {
+        this.personalInteraction2 = personalInteraction2;
+    }
+
+    public Interaction getPersonalInteraction3() {
+        return personalInteraction3;
+    }
+
+    public void setPersonalInteraction3(Interaction personalInteraction3) {
+        this.personalInteraction3 = personalInteraction3;
+    }
+
+    public Interaction getPersonalInteraction4() {
+        return personalInteraction4;
+    }
+
+    public void setPersonalInteraction4(Interaction personalInteraction4) {
+        this.personalInteraction4 = personalInteraction4;
+    }
+
+    public Interaction getIntrapersonalInteraction2() {
+        return intrapersonalInteraction2;
+    }
+
+    public void setIntrapersonalInteraction2(Interaction intrapersonalInteraction2) {
+        this.intrapersonalInteraction2 = intrapersonalInteraction2;
+    }
+
+    public Interaction getIntrapersonalInteraction3() {
+        return intrapersonalInteraction3;
+    }
+
+    public void setIntrapersonalInteraction3(Interaction intrapersonalInteraction3) {
+        this.intrapersonalInteraction3 = intrapersonalInteraction3;
+    }
+
+    public Interaction getIntrapersonalInteraction4() {
+        return intrapersonalInteraction4;
+    }
+
+    public void setIntrapersonalInteraction4(Interaction intrapersonalInteraction4) {
+        this.intrapersonalInteraction4 = intrapersonalInteraction4;
+    }
+
+    public Interaction getAlignmentInteraction2() {
+        return alignmentInteraction2;
+    }
+
+    public void setAlignmentInteraction2(Interaction alignmentInteraction2) {
+        this.alignmentInteraction2 = alignmentInteraction2;
+    }
+
+    public Interaction getAlignmentInteraction3() {
+        return alignmentInteraction3;
+    }
+
+    public void setAlignmentInteraction3(Interaction alignmentInteraction3) {
+        this.alignmentInteraction3 = alignmentInteraction3;
+    }
+
+    public Interaction getAlignmentInteraction4() {
+        return alignmentInteraction4;
+    }
+
+    public void setAlignmentInteraction4(Interaction alignmentInteraction4) {
+        this.alignmentInteraction4 = alignmentInteraction4;
+    }
+
+    public String toString() {
+        return name + " the " + species;
+    }
+
+
+    public int getHunger() {
+        return hunger;
+    }
+
+    public void setHunger(int hunger) {
+        this.hunger = hunger;
+    }
+
+    public int getPurity() {
+        return purity;
+    }
+
+    public void setPurity(int purity) {
+        this.purity = purity;
+    }
+
+    public int getPotence() {
+        return potence;
+    }
+
+    public void setPotence(int potence) {
+        this.potence = potence;
+    }
+
+    public int getOmnipresence() {
+        return omnipresence;
+    }
+
+    public void setOmnipresence(int omnipresence) {
+        this.omnipresence = omnipresence;
+    }
+
+    public Interaction getPersonalInteraction1() {
+        return personalInteraction;
+    }
+
+    public void setPersonalInteraction1(Interaction personalInteraction1) {
+        this.personalInteraction = personalInteraction1;
+    }
+
+
+    public Interaction getIntrapersonalInteraction1() {
+        return intrapersonalInteraction;
+    }
+
+    public void setIntrapersonalInteraction1(Interaction intrapersonalInteraction1) {
+        this.intrapersonalInteraction = intrapersonalInteraction1;
+    }
+
+    public Interaction getAlignmentInteraction1() {
+        return alignmentInteraction;
+    }
+
+    public void setAlignmentInteraction1(Interaction alignmentInteraction1) {
+        this.alignmentInteraction = alignmentInteraction1;
+    }
+
+    public int getAlignmentInteractionNumber() {
+        return alignmentInteractionNumber;
+    }
+
+    public void setAlignmentInteractionNumber(int alignmentInteractionNumber) {
+        this.alignmentInteractionNumber = alignmentInteractionNumber;
+    }
+
+    public void setMyPersonalInteractions(Map<Integer, Interaction> myPersonalInteractions) {
+        this.myPersonalInteractions = myPersonalInteractions;
+    }
+
+    public void setMyIntrapersonalInteractions(Map<Integer, Interaction> myIntrapersonalInteractions) {
+        this.myIntrapersonalInteractions = myIntrapersonalInteractions;
+    }
+
+    public Map<Integer, Interaction> getMyAlignmentInteractions() {
+        return myAlignmentInteractions;
+    }
+
+    public void setMyAlignmentInteractions(Map<Integer, Interaction> myAlignmentInteractions) {
+        this.myAlignmentInteractions = myAlignmentInteractions;
+    }
+
+    public int getBoredom() {
+        return boredom;
+    }
+
+    public void setBoredom(int boredom) {
+        this.boredom = boredom;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSpecies() {
+        return species;
+    }
+
+    public void setSpecies(String species) {
+        this.species = species;
+    }
+
+    public int getQuintessence() {
+        return quintessence;
+    }
+
+    public void setQuintessence(int quintessence) {
+        this.quintessence = quintessence;
+    }
+
+    public int getLoyalty() {
+        return loyalty;
+    }
+
+    public void setLoyalty(int loyalty) {
+        this.loyalty = loyalty;
+    }
+
+    public int getIntelligence() {
+        return intelligence;
+    }
+
+    public void setIntelligence(int intelligence) {
+        this.intelligence = intelligence;
+    }
+
+    public int getDiscipline() {
+        return discipline;
+    }
+
+    public void setDiscipline(int discipline) {
+        this.discipline = discipline;
+    }
+
+    public int getAscendanceLevel() {
+        return ascendanceLevel;
+    }
+
+    public void setAscendanceLevel(int ascendanceLevel) {
+        this.ascendanceLevel = ascendanceLevel;
+    }
+
+    public int getQuintessenceLast() {
+        return quintessenceLast;
+    }
+
+    public void setQuintessenceLast(int quintessenceLast) {
+        this.quintessenceLast = quintessenceLast;
+    }
+
+
+    public Map<Integer, Interaction> getMyPersonalInteractions() {
+        return myPersonalInteractions;
+    }
+
+    public Map<Integer, Interaction> getMyIntrapersonalInteractions() {
+        return myIntrapersonalInteractions;
+    }
+
+    public void setMyInteractions(Map<Integer, Interaction> myInteractions) {
+        this.myPersonalInteractions = myInteractions;
+    }
+
+
+    public void addPersonalInteraction(Interaction thisInteraction) {
+        myPersonalInteractions.put(personalInteractionNumber, thisInteraction);
+        personalInteractionNumber++;
+    }
+
+    public void addIntrapersonalInteraction(Interaction thisInteraction) {
+        myPersonalInteractions.put(intrapersonalInteractionNumber + 10, thisInteraction);
+        intrapersonalInteractionNumber++;
+    }
 }

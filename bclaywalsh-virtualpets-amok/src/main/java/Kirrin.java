@@ -10,6 +10,7 @@ public class Kirrin extends NeutralKami implements Corporeal {
         this.quintessence = quintessence;
         this.age = age;
         ascendanceLevel = 18;
+        this.alignment = "Neutral";
         goal = "witness and channel profound acts of destiny in this world.";
         interactionTaken = new Interaction(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", "watching intently the realm about them", 0, 0, 0);
 
@@ -41,6 +42,7 @@ public class Kirrin extends NeutralKami implements Corporeal {
         this.quintessence = 2;
         this.age = 5;
         this.goal = "witness and channel profound acts of destiny in this world.";
+        this.alignment = "Neutral";
         interactionTaken = new Interaction(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", "watching intently the realm about them", 0, 0, 0);
         myPersonalInteractions.put(1, interactionA);
         myPersonalInteractions.put(2, interactionB);

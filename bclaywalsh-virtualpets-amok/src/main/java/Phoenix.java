@@ -9,8 +9,9 @@ public class Phoenix extends NeutralKami implements Corporeal {
         this.discipline = discipline;
         this.boredom = boredom;
         this.age = age;
-        ascendanceLevel = 20;
-        goal = "bless sacred beginnings and instill them with vitality.";
+        this.alignment = "Neutral";
+        this.ascendanceLevel = 20;
+        this.goal = "bless sacred beginnings and instill them with vitality.";
         interactionTaken = new Interaction(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", "pulling itself from a pile of smoldering ashes", 0, 0, 0);
         myPersonalInteractions.put(1, interactionA);
         myPersonalInteractions.put(2, interactionB);
@@ -41,6 +42,7 @@ public class Phoenix extends NeutralKami implements Corporeal {
         this.age = 10;
         this.ascendanceLevel = 20;
         this.goal = "bless sacred beginnings and instill them with vitality.";
+        this.alignment = "Neutral";
         interactionTaken = new Interaction(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", "pulling itself from a pile of smoldering ashes", 0, 0, 0);
         myPersonalInteractions.put(1, interactionA);
         myPersonalInteractions.put(2, interactionB);

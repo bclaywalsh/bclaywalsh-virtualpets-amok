@@ -9,6 +9,7 @@ public class NatureKami extends ChaoticKami implements Ethereal {
         this.discipline = discipline;
         this.boredom = boredom;
         this.age = age;
+        this.alignment = "Chaotic";
         goal = "maintain and expand the natural order of the wilderness.";
         ascendanceLevel = 11;
         interactionTaken = new Interaction(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", "playing made-up games amidst the sun-dappled grasses", 0, 0, 0);
@@ -39,6 +40,7 @@ public class NatureKami extends ChaoticKami implements Ethereal {
         this.loyalty = 0;
         this.quintessence = 3;
         this.age = 1;
+        this.alignment = "Chaotic";
         this.goal = "maintain and expand the natural order of the wilderness.";
         interactionTaken = new Interaction(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", "playing made-up games amidst the sun-dappled grasses", 0, 0, 0);
         myPersonalInteractions.put(1, interactionA);

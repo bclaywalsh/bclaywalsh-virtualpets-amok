@@ -18,6 +18,7 @@ public abstract class Kami {
     protected int potence;
     protected int omnipresence;
     protected boolean isInteracting = false;
+    protected String alignment;
 
 
     //PREVIOUS TICK STATS
@@ -30,7 +31,6 @@ public abstract class Kami {
     protected int potenceLast;
     protected int omnipresenceLast;
     protected int quintessenceLast;
-
 
     protected Interaction interactionTaken; //  ALIASING! WOOHOO!
     protected Interaction personalInteraction;
@@ -50,17 +50,16 @@ public abstract class Kami {
     protected Interaction intrapersonalInteraction3;
     protected Interaction intrapersonalInteraction4;
     protected Interaction alignmentInteraction1;
-
     protected Interaction alignmentInteraction2;
+
     protected Interaction alignmentInteraction3;
     protected Interaction alignmentInteraction4;
-
 
     protected Map<Integer, Interaction> myPersonalInteractions = new HashMap<>();
 
     protected Map<Integer, Interaction> myIntrapersonalInteractions = new HashMap<>();
-    protected Map<Integer, Interaction> myAlignmentInteractions = new HashMap<>();
 
+    protected Map<Integer, Interaction> myAlignmentInteractions = new HashMap<>();
     public Kami(String kamiName, String kamiSpecies, int quintessence, int loyalty, int intelligence, int discipline, int boredom, int age) {
         this.name = kamiName;
         this.species = kamiSpecies;
@@ -119,7 +118,7 @@ public abstract class Kami {
                 if (omnipresence < 0) omnipresence = 0;
             } else if (omnipresence > 10) omnipresence = 10;
 
-            if (quintessence > ascendanceLevel) { // ASCENDED CORPOREAL STAT CAPS
+            if (quintessence > ascendanceLevel) { // ASCENDED ETHEREAL STAT CAPS
                 if (potence < 8) potence = 8;
                 if (omnipresence < 8) omnipresence = 8;
             }
@@ -290,10 +289,10 @@ public abstract class Kami {
 //    public abstract void intrapersonalInteraction(int interactionKeyNumber);
 //
 //    public abstract void alignedInteraction(int interactionKeyNumber);
+
     public Interaction getAlignedInteraction(int interactionKeyNumber) {
         return myAlignmentInteractions.get(interactionKeyNumber);
     }
-
     public Interaction getPersonalInteraction(int interactionKey) {
         return myPersonalInteractions.get(interactionKey);
     }
@@ -632,6 +631,14 @@ public abstract class Kami {
 
     public String getSpecies() {
         return species;
+    }
+
+    public String getAlignment() {
+        return alignment;
+    }
+
+    public void setAlignment(String alignment) {
+        this.alignment = alignment;
     }
 
     public void setSpecies(String species) {

@@ -36,7 +36,7 @@ public class GardenOfShinkaiApp {
             System.out.println("((>=================================================================================================================/");
             System.out.println("Your karma is rank (" + myGarden.getKarma() + ") and in this cycle you have -<(" + myGarden.getPower() + ")>- thaums of power.");
             if (Math.abs(myGarden.getBalance()) < 5) {
-                System.out.println("It is a new cycle, and new opportunities have emerged to shape destiny. Garden Balance: " + myGarden.getBalance() + " (Chaotic-- x ++Axiomatic");
+                System.out.println("It is a new cycle, and new opportunities have emerged to shape destiny. Garden Balance: " + myGarden.getBalance() + " (-Chaotic- / +Axiomatic+)");
             } else if (myGarden.getBalance() < -4) {
                 System.out.println("Your garden is growing wild and chaotic. Balance the chi of your Kami to prosper more fully. Garden Balance: " + myGarden.getBalance() + " (Chaotic) ");
             } else {
@@ -56,9 +56,9 @@ public class GardenOfShinkaiApp {
                     break;
                 }
                 System.out.println("=========================================================================================================================<))");
-                System.out.println("Name: " + kami.getName() + "\t\tSpecies: " + kami.getSpecies() + "\t\tGoal: " + kami.getGoal());
+                System.out.println("Name: " + kami.getName() + "\t\tSpecies: " + kami.getSpecies() + "\t\tAlignment: " + kami.getAlignment() + "\t\tGoal: " + kami.getGoal());
                 System.out.println(kami.getName() + " is now " + kami.getAge() + " cycles old and is a rank " + kami.getQuintessence() + " god.");
-                System.out.println("          " + kami.getName() + " is " + kami.getInteractionTaken().getReactionText() + ".");          //  InteractionTaken
+                System.out.println("|(<o>----->" + kami.getName() + " is " + kami.getInteractionTaken().getReactionText() + ".");          //  InteractionTaken
                 System.out.println("    ~~~~--------------------------------------------------------------------------------------~~~~");
                 if (kami instanceof Corporeal) {
                     System.out.println(" --->) *Hunger: " + kami.getHunger() + "*\t||\t*Purity: " + kami.getPurity() + "*\t||\t*Boredom: " + kami.getBoredom() + "* (<---");
@@ -97,12 +97,12 @@ public class GardenOfShinkaiApp {
             }
             do {
                 command = 7;
-                System.out.println("You have ( " + myGarden.getPower() + " ) power remaining for this cycle.");
-                System.out.println("enter 1 to: " + myGarden.getGlobalChoiceAString() + " (1 thaum)");
-                System.out.println(" enter 2 to: " + myGarden.getGlobalChoiceBString() + " (1 thaum)");
-                System.out.println("  enter 3 to: Focus your powers on a particular kami. (variable thaums)");
-                System.out.println("   enter 4 to: Summon forth a new kami into your garden. (1 thaum)");
-                System.out.println("    enter 5 to: Release a kami from your care. The happiness of a released kami will add or subtract from your karma.");
+                System.out.println("You have -<(" + myGarden.getPower() + ")>- thaums of power remaining for this cycle.");
+                System.out.println(" enter 1 to: " + myGarden.getGlobalChoiceAString() + " -<(1)>- thaum)");
+                System.out.println("enter 2 to: " + myGarden.getGlobalChoiceBString() + " -<(1)>- thaum)");
+                System.out.println(" enter 3 to: Focus your powers on a particular kami. -<(variable)>- thaums");
+                System.out.println("  enter 4 to: Summon forth a new kami into your garden. -<(1)>- thaum");
+                System.out.println("   enter 5 to: Release a kami from your care. The happiness of a released kami will add or subtract from your karma.");
                 System.out.println("\n_______________________________________________________");
                 System.out.println("  enter 6 to end the current cycle.");
                 System.out.println(" enter 0 to escape your divine obligations.");

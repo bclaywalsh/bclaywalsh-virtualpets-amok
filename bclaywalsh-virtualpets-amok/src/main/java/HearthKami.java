@@ -9,6 +9,7 @@ public class HearthKami extends AxiomaticKami implements Ethereal {
         this.discipline = discipline;
         this.boredom = boredom;
         this.age = age;
+        this.alignment = "Axiomatic";
         this.goal = "maintain a happy and healthy family of mortals.";
         this.interactionTaken = new Interaction(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", "patiently awaiting your instructions", 0, 0, 0);
         myPersonalInteractions.put(1, interactionA);
@@ -41,6 +42,7 @@ public class HearthKami extends AxiomaticKami implements Ethereal {
         this.quintessence = 2;
         this.age = 0;
         this.ascendanceLevel = 8;
+        this.alignment = "Axiomatic";
         this.goal = "maintain a happy and healthy family of mortals.";
         this.interactionTaken = new Interaction(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", "patiently awaiting your instructions", 0, 0, 0);
         myPersonalInteractions.put(1, interactionA);

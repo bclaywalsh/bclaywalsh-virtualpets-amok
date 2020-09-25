@@ -9,7 +9,8 @@ public class CurseKami extends ChaoticKami implements Ethereal {
         this.discipline = discipline;
         this.boredom = boredom;
         this.age = age;
-        goal = "spread the misery and anger with which they are infected.";
+        this.alignment = "Chaotic";
+        this.goal = "spread the misery and anger with which they are infected.";
         this.interactionTaken = new Interaction(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", "watching you silently", 0, 0, 0);
         myPersonalInteractions.put(1, interactionA);
         myPersonalInteractions.put(2, interactionB);
@@ -41,6 +42,8 @@ public class CurseKami extends ChaoticKami implements Ethereal {
         this.quintessence = 4;
         this.age = 3;
         this.ascendanceLevel = 15;
+        this.alignment = "Chaotic";
+
         this.goal = "spread the misery and anger with which they are infected.";
         this.interactionTaken = new Interaction(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", "watching you silently", 0, 0, 0);
 

@@ -10,7 +10,8 @@ public class Dragon extends AxiomaticKami implements Corporeal {
         this.boredom = boredom;
         this.age = age;
         this.ascendanceLevel = 23;
-        goal = "rule over all it sees, and to profit in all ways.";
+        this.alignment = "Axiomatic";
+        this.goal = "rule over all it sees, and to profit in all ways.";
         this.interactionTaken = new Interaction(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", "paying rapt attention to you", 0, 0, 0);
         myPersonalInteractions.put(1, interactionA);
         myPersonalInteractions.put(2, interactionB);
@@ -41,6 +42,7 @@ public class Dragon extends AxiomaticKami implements Corporeal {
         this.quintessence = 5;
         this.age = 5;
         this.ascendanceLevel = 23;
+        this.alignment = "Axiomatic";
         myPersonalInteractions.put(1, interactionA);
         myPersonalInteractions.put(2, interactionB);
         myPersonalInteractions.put(3, interactionC);

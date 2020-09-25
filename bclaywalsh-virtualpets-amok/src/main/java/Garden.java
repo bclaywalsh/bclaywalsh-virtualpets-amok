@@ -120,10 +120,9 @@ public class Garden {
     public void focusWill(String kamiName) {
         focusing = true;
         int thisCommand = 0;
-        System.out.println("Got up to aliasing the kamiName");
         Kami thisKami = gardenKami.get(kamiName);
-        System.out.println("got up to displaying options");
-        System.out.println("\n1: (" + thisKami.getPersonalInteraction1().getPowerCost() + "thaums, Difficulty: " + thisKami.getPersonalInteraction1().getDifficulty() + ") " + thisKami.getPersonalInteraction1().getText());
+        System.out.println("\nYou currently have -<(" + power + ")>- thaums of power");
+        System.out.println("1: (" + thisKami.getPersonalInteraction1().getPowerCost() + "thaums, Difficulty: " + thisKami.getPersonalInteraction1().getDifficulty() + ") " + thisKami.getPersonalInteraction1().getText());
         System.out.println("2: (" + thisKami.getAlignmentInteraction1().getPowerCost() + "thaums, Difficulty: " + thisKami.getAlignmentInteraction1().getDifficulty() + ") " + thisKami.getAlignmentInteraction1().getText());
         System.out.println("3: (" + thisKami.getIntrapersonalInteraction1().getPowerCost() + "thaums, Difficulty: " + thisKami.getIntrapersonalInteraction1().getDifficulty() + ") " + thisKami.getIntrapersonalInteraction1().getText());
         System.out.println("4: <-back");
@@ -133,17 +132,14 @@ public class Garden {
             if (thisCommand == 1 && power >= thisKami.getPersonalInteraction1().getPowerCost()) {
                 thisKami.personalInteraction(1);
                 power -= thisKami.getPersonalInteraction1().getPowerCost();
-                System.out.println(thisKami.getPersonalInteraction1().getPowerCost() + " power has been depleted");
                 ok = true;
             } else if (thisCommand == 2 && power >= thisKami.getAlignmentInteraction1().getPowerCost()) {
                 thisKami.alignedInteraction(1);
                 power -= thisKami.getAlignmentInteraction1().getPowerCost();
-                System.out.println(thisKami.getPersonalInteraction1().getPowerCost() + " power has been depleted");
                 ok = true;
             } else if (thisCommand == 3 && power >= thisKami.getIntrapersonalInteraction1().getPowerCost()) {
                 thisKami.intrapersonalInteraction(1);
                 power -= thisKami.getIntrapersonalInteraction1().getPowerCost();
-                System.out.println(thisKami.getPersonalInteraction1().getPowerCost() + " power has been depleted");
                 ok = true;
             } else if (thisCommand == 4) {
                 ok = true;

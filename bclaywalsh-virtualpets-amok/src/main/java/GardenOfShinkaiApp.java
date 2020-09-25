@@ -34,13 +34,13 @@ public class GardenOfShinkaiApp {
             // PROGRESS REPORT
             System.out.println("\n-))~------------------------------------------------------------------------------------~~~~~~~~~~~~~~~/~/~/");
             System.out.println("((>=================================================================================================================/");
-            System.out.println("Your karma is rank (" + myGarden.getKarma() + ") and in this cycle you have (" + myGarden.getPower() + ") thaums of power.");
-            if (Math.abs(myGarden.getBalance()) < 3) {
-                System.out.println("It is a new cycle, and new opportunities have emerged to shape destiny.");
-            } else if (myGarden.getBalance() < -2) {
-                System.out.println("Your garden is growing wild and chaotic. Balance the chi of your Kami to prosper more fully.");
+            System.out.println("Your karma is rank (" + myGarden.getKarma() + ") and in this cycle you have -<(" + myGarden.getPower() + ")>- thaums of power.");
+            if (Math.abs(myGarden.getBalance()) < 5) {
+                System.out.println("It is a new cycle, and new opportunities have emerged to shape destiny. Garden Balance: " + myGarden.getBalance() + " (Chaotic-- x ++Axiomatic");
+            } else if (myGarden.getBalance() < -4) {
+                System.out.println("Your garden is growing wild and chaotic. Balance the chi of your Kami to prosper more fully. Garden Balance: " + myGarden.getBalance() + " (Chaotic) ");
             } else {
-                System.out.println("Your garden is growing stagnant and desolate. Balance the chi of your Kami to prosper more fully.");
+                System.out.println("Your garden is growing stagnant and desolate. Balance the chi of your Kami to prosper more fully. Garden Balance: " + myGarden.getBalance() + " (Axiomatic) ");
             }
             System.out.println("((>=============================================================================================================/");
             System.out.println("-))~------------------------------------------------------------------------------------~~///(\n");
@@ -58,7 +58,7 @@ public class GardenOfShinkaiApp {
                 System.out.println("=========================================================================================================================<))");
                 System.out.println("Name: " + kami.getName() + "\t\tSpecies: " + kami.getSpecies() + "\t\tGoal: " + kami.getGoal());
                 System.out.println(kami.getName() + " is now " + kami.getAge() + " cycles old and is a rank " + kami.getQuintessence() + " god.");
-                //System.out.println("          " + kami.getName() + " is " + kami.getInteractionTaken().getReactionText() + ".");          //  InteractionTaken
+                System.out.println("          " + kami.getName() + " is " + kami.getInteractionTaken().getReactionText() + ".");          //  InteractionTaken
                 System.out.println("    ~~~~--------------------------------------------------------------------------------------~~~~");
                 if (kami instanceof Corporeal) {
                     System.out.println(" --->) *Hunger: " + kami.getHunger() + "*\t||\t*Purity: " + kami.getPurity() + "*\t||\t*Boredom: " + kami.getBoredom() + "* (<---");
@@ -139,12 +139,9 @@ public class GardenOfShinkaiApp {
                         System.out.println(myGarden.getGardenKami());
                         System.out.println("Which Kami would you like to approach?\n   ->) enter its name below or enter 'back'");
                         String kamiName = inputString.nextLine().trim();
-                        System.out.println("got " + kamiName);
                         if (kamiName.equals("back")) continue;
                         else if (myGarden.getGardenKami().containsKey(kamiName)) {
-                            System.out.println("Generating Choices:");
                             myGarden.getGardenKami().get(kamiName).generateChoices();
-                            System.out.println("About to Focus Will");
                             myGarden.focusWill(kamiName);
                             areYouSureA = true;
                         } else {
